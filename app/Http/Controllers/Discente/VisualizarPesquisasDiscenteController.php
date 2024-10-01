@@ -9,6 +9,7 @@ class VisualizarPesquisasDiscenteController extends Controller
 {
     public function visualizarPesquisasDiscente()
     {
+        // Retornar a Tela
         return view("Discente.visualizar-pesquisas");
     }
 }
