@@ -8,6 +8,10 @@ use App\Http\Controllers\Cpa\MinhasPesquisasController;
 use App\Http\Controllers\Cpa\FormulariosDaPesquisaController;
 use App\Http\Controllers\Cpa\ModelosDeFormularioController;
 use App\Http\Controllers\Cpa\CriarFormularioController;
+use App\Http\Controllers\Cpa\ResultadosController;
+use App\Http\Controllers\Cpa\VisualizarResultadosController;
+use App\Http\Controllers\Cpa\VisualizarResultadosPesquisaController;
+use App\Http\Controllers\Cpa\VisualizarResultadosFormularioController;
 use App\Http\Controllers\Discente\TelaInicialDiscenteController;
 use App\Http\Controllers\Discente\ParticiparPesquisasDiscenteController;
 use App\Http\Controllers\Discente\VisualizarPesquisasDiscenteController;
@@ -39,6 +43,18 @@ Route::get('/modelos-de-formulario', [ModelosDeFormularioController::class, 'mod
 
 // Rota da Tela de Criar Formulário - CPA
 Route::get('/criar-formulario', [CriarFormularioController:: class, 'criarFormulario'])->name('cpa.criar-formulario');
+
+// Rota da Tela de Resultados - CPA
+Route::get('/resultados', [ResultadosController:: class, 'resultados'])->name('cpa.resultados');
+
+// Rota da Tela de Visualizar Resultados - CPA
+Route::get('/visualizar-resultados', [VisualizarResultadosController:: class, 'visualizarResultados'])->name('cpa.visualizar-resultados');
+
+// Rota da Tela de Visualizar Resultados por Pesquisa- CPA
+Route::get('/visualizar-resultados-pesquisa', [VisualizarResultadosPesquisaController:: class, 'visualizarResultadosPesquisa'])->name('cpa.visualizar-resultados-pesquisa');
+
+// Rota da Tela de Visualizar Resultados por Formulario- CPA
+Route::get('/visualizar-resultados-formulario', [VisualizarResultadosFormularioController:: class, 'visualizarResultadosFormulario'])->name('cpa.visualizar-resultados-formulario');
 
 // Rota da Tela Inicial - DISCENTE
 Route::get('/tela-inicial-discente', [TelaInicialDiscenteController::class, 'telaInicialDiscente'])->name('discente.tela-inicial');
