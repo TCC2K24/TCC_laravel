@@ -7,6 +7,18 @@ use App\Http\Controllers\Cpa\CriarPesquisaController;
 use App\Http\Controllers\Cpa\TelaInicialController;
 use App\Http\Controllers\Cpa\MinhasPesquisasController;
 use App\Http\Controllers\Cpa\FormulariosDaPesquisaController;
+use App\Http\Controllers\Cpa\ModelosDeFormularioController;
+use App\Http\Controllers\Cpa\CriarFormularioController;
+use App\Http\Controllers\Cpa\ResultadosController;
+use App\Http\Controllers\Cpa\VisualizarResultadosController;
+use App\Http\Controllers\Cpa\VisualizarResultadosPesquisaController;
+use App\Http\Controllers\Cpa\VisualizarResultadosFormularioController;
+use App\Http\Controllers\Discente\TelaInicialDiscenteController;
+use App\Http\Controllers\Discente\ParticiparPesquisasDiscenteController;
+use App\Http\Controllers\Discente\VisualizarPesquisasDiscenteController;
+use App\Http\Controllers\Discente\ResponderFormularioDiscenteController;
+use App\Http\Controllers\Discente\MeusCertificadosDiscenteController;
+use App\Http\Controllers\Discente\MeuCertificadoDiscenteController;
 
 use App\Http\Controllers\Discente\TelaInicialDiscenteController;
 use App\Http\Controllers\Discente\ParticiparPesquisasDiscenteController;
@@ -68,4 +80,4 @@ Route::get('/responder-formulario-discente', [ResponderFormularioDiscenteControl
 Route::get('/meus-certificados-discente', [MeusCertificadosDiscenteController::class, 'meusCertificadosDiscente'])->name("discente.meus-certificados");
 
 // Rota da Tela de Meu Certificado - DISCENTE
-// agora vai
+Route::get('/meu-certificado-discente', [MeuCertificadoDiscenteController::class, 'meuCertificadoDiscente'])->name("discente.meu-certificado");
