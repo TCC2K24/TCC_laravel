@@ -69,4 +69,3 @@ Route::get('/meus-certificados-discente', [MeusCertificadosDiscenteController::c
 
 // Rota da Tela de Meu Certificado - DISCENTE
 // agora vai
-Route::get('/meu-certificado-discente', [MeuCertificadoDiscenteController::class, 'meuCertificadoDiscente'])->name("discente.meu-certificado");
