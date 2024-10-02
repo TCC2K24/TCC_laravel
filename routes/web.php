@@ -20,13 +20,6 @@ use App\Http\Controllers\Discente\ResponderFormularioDiscenteController;
 use App\Http\Controllers\Discente\MeusCertificadosDiscenteController;
 use App\Http\Controllers\Discente\MeuCertificadoDiscenteController;
 
-use App\Http\Controllers\Discente\TelaInicialDiscenteController;
-use App\Http\Controllers\Discente\ParticiparPesquisasDiscenteController;
-use App\Http\Controllers\Discente\VisualizarPesquisasDiscenteController;
-use App\Http\Controllers\Discente\ResponderFormularioDiscenteController;
-use App\Http\Controllers\Discente\MeusCertificadosDiscenteController;
-use App\Http\Controllers\Discente\MeuCertificadoDiscenteController;
-
 //Route::get('/', function () {
 //    return view('welcome');
 //});
