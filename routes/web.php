@@ -2,10 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Usuario\UsuarioController;
+
 use App\Http\Controllers\Cpa\CriarPesquisaController;
 use App\Http\Controllers\Cpa\TelaInicialController;
 use App\Http\Controllers\Cpa\MinhasPesquisasController;
 use App\Http\Controllers\Cpa\FormulariosDaPesquisaController;
+
 use App\Http\Controllers\Discente\TelaInicialDiscenteController;
 use App\Http\Controllers\Discente\ParticiparPesquisasDiscenteController;
 use App\Http\Controllers\Discente\VisualizarPesquisasDiscenteController;
