@@ -34,7 +34,23 @@ Route::get('/criar-pesquisa-cpa', [CriarPesquisaController::class, 'criarPesquis
 // Rota de Formulários da Pesquisa - CPA
 Route::get('/formularios-da-pesquisa-cpa', [FormulariosDaPesquisaController::class, 'formulariosDaPesquisa'])->name('cpa.formularios-da-pesquisa');
 
+// Rota da Tela de Modelos de Formulário - CPA
+Route::get('/modelos-de-formulario', [ModelosDeFormularioController::class, 'modelosDeFomulario'])->name('cpa.modelos-de-formulario');
 
+// Rota da Tela de Criar Formulário - CPA
+Route::get('/criar-formulario', [CriarFormularioController:: class, 'criarFormulario'])->name('cpa.criar-formulario');
+
+// Rota da Tela de Resultados - CPA
+Route::get('/resultados', [ResultadosController:: class, 'resultados'])->name('cpa.resultados');
+
+// Rota da Tela de Visualizar Resultados - CPA
+Route::get('/visualizar-resultados', [VisualizarResultadosController:: class, 'visualizarResultados'])->name('cpa.visualizar-resultados');
+
+// Rota da Tela de Visualizar Resultados por Pesquisa- CPA
+Route::get('/visualizar-resultados-pesquisa', [VisualizarResultadosPesquisaController:: class, 'visualizarResultadosPesquisa'])->name('cpa.visualizar-resultados-pesquisa');
+
+// Rota da Tela de Visualizar Resultados por Formulario- CPA
+Route::get('/visualizar-resultados-formulario', [VisualizarResultadosFormularioController:: class, 'visualizarResultadosFormulario'])->name('cpa.visualizar-resultados-formulario');
 
 // Rota da Tela Inicial - DISCENTE
 Route::get('/tela-inicial-discente', [TelaInicialDiscenteController::class, 'telaInicialDiscente'])->name('discente.tela-inicial');
@@ -50,3 +66,6 @@ Route::get('/responder-formulario-discente', [ResponderFormularioDiscenteControl
 
 // Rota da Tela de Meus Certificados - DISCENTE
 Route::get('/meus-certificados-discente', [MeusCertificadosDiscenteController::class, 'meusCertificadosDiscente'])->name("discente.meus-certificados");
+
+// Rota da Tela de Meu Certificado - DISCENTE
+Route::get('/meu-certificado-discente', [MeuCertificadoDiscenteController::class, 'meuCertificadoDiscente'])->name("discente.meu-certificado");
