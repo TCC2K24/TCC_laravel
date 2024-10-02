@@ -50,8 +50,3 @@ Route::get('/responder-formulario-discente', [ResponderFormularioDiscenteControl
 
 // Rota da Tela de Meus Certificados - DISCENTE
 Route::get('/meus-certificados-discente', [MeusCertificadosDiscenteController::class, 'meusCertificadosDiscente'])->name("discente.meus-certificados");
-
-
-
-// Rota da Tela de Meu Certificado - DISCENTE
-Route::get('/meu-certificado-discente', [MeuCertificadoDiscenteController::class, 'meuCertificadoDiscente'])->name("discente.meu-certificado");
