@@ -19,6 +19,12 @@ use App\Http\Controllers\Discente\VisualizarPesquisasDiscenteController;
 use App\Http\Controllers\Discente\ResponderFormularioDiscenteController;
 use App\Http\Controllers\Discente\MeusCertificadosDiscenteController;
 use App\Http\Controllers\Discente\MeuCertificadoDiscenteController;
+use App\Http\Controllers\Coordenador\TelaInicialCoordenadorController;
+use App\Http\Controllers\Coordenador\ResultadosCoordenadorController;
+use App\Http\Controllers\Coordenador\VisualizarResultadosCoordenadorController;
+use App\Http\Controllers\Coordenador\VisualizarResultadosFormularioCoordenadorController;
+use App\Http\Controllers\Coordenador\VisualizarResultadosPesquisaCoordenadorController;
+
 
 //Route::get('/', function () {
 //    return view('welcome');
@@ -74,3 +80,18 @@ Route::get('/meus-certificados-discente', [MeusCertificadosDiscenteController::c
 
 // Rota da Tela de Meu Certificado - DISCENTE
 Route::get('/meu-certificado-discente', [MeuCertificadoDiscenteController::class, 'meuCertificadoDiscente'])->name("discente.meu-certificado");
+
+// Rota da Tela Inicial - COORDENADOR
+Route::get('/tela-inicial-coordenador', [TelaInicialCoordenadorController::class, 'telaInicialCoordenador'])->name("coordenador.tela-inicial");
+
+// Rota da Tela de Resultados - COORDENADOR
+Route::get('/resultados-coordenador', [ResultadosCoordenadorController::class, 'resultadosCoordenador'])->name("coordenador.resultados");
+
+// Rota da Tela de Visualizar Resultados - COORDENADOR
+Route::get('/visualizar-resultados-coordenador', [VisualizarResultadosCoordenadorController::class, 'visualizarResultadosCoordenador'])->name("coordenador.visualizar-resultados");
+
+// Rota da Tela de Visualizar Resultados por Formulário - COORDENADOR
+Route::get('/visualizar-resultados-formulario-coordenador', [VisualizarResultadosFormularioCoordenadorController::class, 'visualizarResultadosFormularioCoordenador'])->name("coordenador.visualizar-resultados-formulario");
+
+// Rota da Tela de Visualizar Resultados por Pesquisa - COORDENADOR
+Route::get('/visualizar-resultados-pesquisa-coordenador', [VisualizarResultadosPesquisaCoordenadorController::class, 'visualizarResultadosPesquisaCoordenador'])->name("coordenador.visualizar-resultados-pesquisa");
