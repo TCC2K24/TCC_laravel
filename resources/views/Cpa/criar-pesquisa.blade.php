@@ -32,7 +32,8 @@
         </nav>
     </div>
 
-    <form method="post" class="form was-validated">
+    <form method="POST" class="form was-validated" action="{{ route('cpa.store') }}">
+        @csrf()
         <div class="d-flex justify-content-center align-items-center mt-3">
 
             <div class="card w-25 m-3">
@@ -41,11 +42,11 @@
                     <p class="card-text">Informe o Tipo:</p>
 
                     <div class="col-auto form-group">
-                        <select class="form-select" required>
+                        <select class="form-select" name="tipo" required>
                             <option value="">--- Selecione ---</option>
-                            <option value="1">Tipo 1</option>
-                            <option value="2">Tipo 2</option>
-                            <option value="3">Tipo 3</option>
+                            <option value="Tipo 1">Tipo 1</option>
+                            <option value="Tipo 2">Tipo 2</option>
+                            <option value="Tipo 3">Tipo 3</option>
                         </select>
                         <div class="invalid-feedback">
                             Por Favor, selecione o Tipo de Pesquisa.
@@ -61,7 +62,7 @@
                     <p class="card-text">Informe o Nome:</p>
 
                     <div class="form-group flex-nowrap">
-                        <input type="text" class="form-control is-valid" placeholder="Nome da Pesquisa"
+                        <input type="text" name="nome" class="form-control is-valid" placeholder="Nome da Pesquisa"
                             aria-label="Username" aria-describedby="addon-wrapping" required>
 
                         <div class="invalid-feedback">
@@ -82,11 +83,11 @@
                     <p class="card-text">Informe o Período:</p>
 
                     <div class="col-auto form-group">
-                        <select id="inputState" class="form-control" required>
+                        <select id="inputState" name="periodo" class="form-control" required>
                             <option value="">--- Selecione ---</option>
-                            <option value="1">Tipo 1</option>
-                            <option value="2">Tipo 2</option>
-                            <option value="3">Tipo 3</option>
+                            <option value="Período 1">Período 1</option>
+                            <option value="Período 2">Período 2</option>
+                            <option value="Período 3">Período 3</option>
                         </select>
 
                         <div class="invalid-feedback">
@@ -104,11 +105,11 @@
                     <p class="card-text">Informe o Setor:</p>
 
                     <div class="col-auto form-group">
-                        <select id="inputState" class="form-control" required>
+                        <select id="inputState" name="setor" class="form-control" required>
                             <option value="">--- Selecione ---</option>
-                            <option value="1">Setor 1</option>
-                            <option value="2">Setor 2</option>
-                            <option value="3">Setor 3</option>
+                            <option value="Setor 1">Setor 1</option>
+                            <option value="Setor 2">Setor 2</option>
+                            <option value="Setor 3">Setor 3</option>
                         </select>
 
                         <div class="invalid-feedback">
@@ -130,11 +131,11 @@
                     <p class="card-text">Informe o(os) Curso(os):</p>
 
                     <div class="col-auto form-group">
-                        <select id="inputState" class="form-control" required>
+                        <select id="inputState" name="curso" class="form-control" required>
                             <option value="">--- Selecione ---</option>
-                            <option value="1">Curso 1</option>
-                            <option value="2">Cursp 2</option>
-                            <option value="3">Curso 3</option>
+                            <option value="Curso 1">Curso 1</option>
+                            <option value="Curso 2">Cursp 2</option>
+                            <option value="Curso 3">Curso 3</option>
                         </select>
 
                         <div class="invalid-feedback">
@@ -152,7 +153,7 @@
                     <p class="card-text">Informe a Data Limite:</p>
 
                     <div class="form-group flex-nowrap">
-                        <input type="date" class="form-control is-valid" required>
+                        <input type="date" name="data" class="form-control is-valid" required>
 
                         <div class="invalid-feedback">
                             Por Favor, informe a Data Limite da Pesquisa.

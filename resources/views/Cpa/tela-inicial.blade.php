@@ -36,7 +36,7 @@
                     <ul class="nav nav-pills flex-column list-group pt-2">
 
                         <li class="nav-item list-group-item list-group-item-action list-group-item-primary active">
-                            <a href="#" class="nav-link align-items-center justify-content-center px-0 text-white">
+                            <a href="{{ route(cpa.tela-inicial) }}" class="nav-link align-items-center justify-content-center px-0 text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
                                     class="bi bi-house-door align-items-center justify-content-center"
                                     viewBox="0 0 16 16">
@@ -48,7 +48,7 @@
                         </li>
 
                         <li class="nav-item list-group-item list-group-item-action list-group-item-primary">
-                            <a href="#" class="nav-link align-items-center justify-content-center px-0 text-white">
+                            <a href="{{ route(cpa.minhas-pesquisas) }}" class="nav-link align-items-center justify-content-center px-0 text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-journal-text" viewBox="0 0 16 16">
                                     <path

@@ -39,8 +39,12 @@ Route::get('/tela-inicial-cpa', [TelaInicialController::class, 'telaInicial'])->
 // Rota da Tela de Minhas Pesquisas - CPA
 Route::get('/minhas-pesquisas-cpa', [MinhasPesquisasController::class, 'minhasPesquisas'])->name('cpa.minhas-pesquisas');
 
-// Rota de Criar Pesquisa - CPA
+// Rota da Tela Criar Pesquisa - CPA (GET)
 Route::get('/criar-pesquisa-cpa', [CriarPesquisaController::class, 'criarPesquisa'])->name('cpa.criar-pesquisa');
+
+
+// Rota de Criar Pesquisa - CPA (POST)
+Route::post('/criar-pesquisa-cpa', [CriarPesquisaController::class, 'store'])->name('cpa.store');
 
 // Rota de Formulários da Pesquisa - CPA
 Route::get('/formularios-da-pesquisa-cpa', [FormulariosDaPesquisaController::class, 'formulariosDaPesquisa'])->name('cpa.formularios-da-pesquisa');

@@ -187,7 +187,9 @@
                         </div>
 
                         <div class="d-grid gap-2 col-2 p-3">
-                            <button class="btn btn-success" type="submit">Nova Pesquisa</button>
+                            <a href="{{ route('cpa.store') }}"> 
+                            <button class="btn btn-success">Nova Pesquisa</button>
+                            </a>
                         </div>
 
                         <div class="mt-3">
