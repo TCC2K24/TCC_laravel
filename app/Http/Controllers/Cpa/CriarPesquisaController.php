@@ -17,6 +17,20 @@ class CriarPesquisaController extends Controller
 
     public function store(Request $request)
     {
-         return CriarPesquisa::create([$request->all()]);
+        // Validação dos campos
+        $validatedData = $request->validate([
+            'tipo' => 'required|string|max:50',
+            'descricao' => 'required|string|max:50',
+            'periodo' => 'required|string|max:50',
+            'dataFim' => 'required|date',
+        ]);
+
+        // Criação da nova pesquisa
+        CriarPesquisa::create($validatedData);
+
+
+         // Define a sessão de sucesso
+         return redirect()->route('cpa.criar-pesquisa')->with('success', 'Pesquisa criada com sucesso!');
+
     }
 }

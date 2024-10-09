@@ -62,7 +62,7 @@
                     <p class="card-text">Informe o Nome:</p>
 
                     <div class="form-group flex-nowrap">
-                        <input type="text" name="nome" class="form-control is-valid" placeholder="Nome da Pesquisa"
+                        <input type="text" name="descricao" class="form-control is-valid" placeholder="Nome da Pesquisa"
                             aria-label="Username" aria-describedby="addon-wrapping" required>
 
                         <div class="invalid-feedback">
@@ -91,7 +91,7 @@
                         </select>
 
                         <div class="invalid-feedback">
-                            Por Favor, informe o Tipo da Pesquisa.
+                            Por Favor, informe o Período da Pesquisa.
                         </div>
 
                     </div>
@@ -105,7 +105,7 @@
                     <p class="card-text">Informe o Setor:</p>
 
                     <div class="col-auto form-group">
-                        <select id="inputState" name="setor" class="form-control" required>
+                        <select id="inputState"  class="form-control" required>
                             <option value="">--- Selecione ---</option>
                             <option value="Setor 1">Setor 1</option>
                             <option value="Setor 2">Setor 2</option>
@@ -131,7 +131,7 @@
                     <p class="card-text">Informe o(os) Curso(os):</p>
 
                     <div class="col-auto form-group">
-                        <select id="inputState" name="curso" class="form-control" required>
+                        <select id="inputState"  class="form-control" required>
                             <option value="">--- Selecione ---</option>
                             <option value="Curso 1">Curso 1</option>
                             <option value="Curso 2">Cursp 2</option>
@@ -153,7 +153,7 @@
                     <p class="card-text">Informe a Data Limite:</p>
 
                     <div class="form-group flex-nowrap">
-                        <input type="date" name="data" class="form-control is-valid" required>
+                        <input type="date" name="dataFim" class="form-control is-valid" required>
 
                         <div class="invalid-feedback">
                             Por Favor, informe a Data Limite da Pesquisa.
@@ -171,9 +171,11 @@
         </div>
 
         <!--Adicionar poppup de confirmação de Pesquisa Criada-->
-
+        
     </form>
+    <body>
 
+    
 </body>
 
 </html>

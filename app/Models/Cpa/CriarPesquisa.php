@@ -9,7 +9,7 @@ class CriarPesquisa extends Model
 {
     use HasFactory;
 
-    protected $table = 'nome-tabela';
-    protected $fillable = ['campos'];
+    protected $table = 'pesquisa';
+    protected $fillable = ['tipo', 'descricao', 'periodo', 'dataInicio', 'dataFim'];
 
 }
