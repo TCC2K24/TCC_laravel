@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pesquisa', function (Blueprint $table) {
-            $table->id();
-            $table->string('tipo', 50);
-            $table->string('descricao', 50);
-            $table->string('periodo', 50);
-            $table->date('dataInicio')->default(now());
-            $table->date('dataFim');
+        Schema::create('formularios', function (Blueprint $table) {
+            $table->id('idFormulario');
+            $table->json('dados');
+            $table->integer('tempoDeParticipacao');
+            $table->foreignId('pesquisa_id')->references('idPesquisa')->on('pesquisas');
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pesquisa');
+        Schema::dropIfExists('formularios');
     }
 };
