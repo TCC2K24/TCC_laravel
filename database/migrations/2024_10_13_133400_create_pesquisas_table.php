@@ -21,6 +21,20 @@ return new class extends Migration
             $table->foreignId('id_resultado')->references('idResultado')->on('resultados');
             $table->timestamps();
         });
+
+        Schema::create('pesquisa_curso',function (Blueprint $table){
+            $table->id();
+            $table->foreignId('pesquisa_id')->references('idPesquisa')->on('pesquisas');
+            $table->foreignId('curso_id')->references('idCurso')->on('cursos');
+            $table->timestamps();
+        });
+
+        Schema::create('pesquisa_usuario',function(Blueprint $table){
+            $table->id();
+            $table->foreignId('usuario_id')->references('idUsuario')->on('usuarios');
+            $table->foreignId('pesquisa_id')->references('idPesquisa')->on('pesquisas');
+            $table->timestamps();
+        });
     }
 
     /**

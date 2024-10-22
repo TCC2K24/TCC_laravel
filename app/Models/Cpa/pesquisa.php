@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class pesquisa extends Model
 {
     use HasFactory;
-
+    protected $fillable = ['tipo', 'descricao', 'periodo', 'dataInicio', 'dataFim'];
 
     public function Resultado() : HasOne {
         return $this->hasOne(Resultado::class);

@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id('idCurso');
             $table->string('nomeCurso',50);
             $table->foreignId('setor_id')->references('idSetor')->on('setors');
+            $table->timestamps();
         });
+
+       
     }
 
     /**
