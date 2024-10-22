@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -12,45 +12,37 @@
 
 <body>
 
-    <div class="nav flex-column">
-        <nav class="navbar navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand mb-0 h1 fs-3 fw-bold text-secondary" href="#">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Logo_oficial_da_UFPR_%28fundo_branco%29.svg/1200px-Logo_oficial_da_UFPR_%28fundo_branco%29.svg.png"
-                        alt="Logo" width="60" height="50" class="d-inline-block align-items-center">
-                    Formulários UFPR
-                </a>
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                    class="bi bi-person-fill" viewBox="0 0 16 16">
-                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
-                </svg>
-
-
-            </div>
-    </div>
+    <!-- Navbar fixa -->
+    <nav class="navbar navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand mb-0 h1 fs-3 fw-bold text-secondary" href="#">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Logo_oficial_da_UFPR_%28fundo_branco%29.svg/1200px-Logo_oficial_da_UFPR_%28fundo_branco%29.svg.png"
+                    alt="Logo" width="60" height="50" class="d-inline-block align-items-center">
+                Formulários UFPR
+            </a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+            </svg>
+        </div>
     </nav>
 
+    <!-- Conteúdo da página -->
     <div class="container-fluid">
         <div class="row flex-nowrap">
-            <div class="col-auto bg-light">
-                <div class="d-flex vh-100">
-                    <ul class="nav nav-pills flex-column list-group pt-2">
+            <div class="col-auto bg-light vh-100">
+                <!-- Navbar lateral -->
+                <ul class="nav nav-pills flex-column list-group" style="margin-top: 95px;">
+                    <li class="nav-item list-group-item list-group-item-action list-group-item-primary">
+                        <a href="{{ route('coordenador.tela-inicial') }}" class="nav-link align-items-center justify-content-center px-0 text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-house-door align-items-center justify-content-center" viewBox="0 0 16 16">
+                                <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z" />
+                            </svg>
+                            <span class="text-white">Início</span>
+                        </a>
+                    </li>
 
-                        <li class="nav-item list-group-item list-group-item-action list-group-item-primary">
-                            <a href="#" class="nav-link align-items-center justify-content-center px-0 text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
-                                    class="bi bi-house-door align-items-center justify-content-center"
-                                    viewBox="0 0 16 16">
-                                    <path
-                                        d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z" />
-                                </svg>
-                                <span class="text-white">Início</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-item list-group-item list-group-item-action list-group-item-primary">
-                            <a href="#" class="nav-link align-items-center justify-content-center px-0 text-white">
+                    <li class="nav-item list-group-item list-group-item-action list-group-item-primary">
+                            <a href="{{ route('coordenador.resultados') }}" class="nav-link align-items-center justify-content-center px-0 text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-bar-chart-line" viewBox="0 0 16 16">
                                     <path
@@ -58,24 +50,24 @@
                                 </svg>
                                 <span class="text-white">Resultados</span>
                             </a>
-                        </li>
+                    </li>
 
-                        <li class="nav-item list-group-item list-group-item-action list-group-item-primary">
-                            <a href="#" class="nav-link align-items-center justify-content-center px-0 text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-bank" viewBox="0 0 16 16">
-                                    <path
-                                        d="m8 0 6.61 3h.89a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v7a.5.5 0 0 1 .485.38l.5 2a.498.498 0 0 1-.485.62H.5a.498.498 0 0 1-.485-.62l.5-2A.5.5 0 0 1 1 13V6H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 3h.89zM3.777 3h8.447L8 1zM2 6v7h1V6zm2 0v7h2.5V6zm3.5 0v7h1V6zm2 0v7H12V6zM13 6v7h1V6zm2-1V4H1v1zm-.39 9H1.39l-.25 1h13.72z" />
-                                </svg>
-                                <span class="text-white">Unidades Responsáveis</span>
-                            </a>
-                        </li>
-                </div>
+                    <li class="nav-item list-group-item list-group-item-action list-group-item-primary">
+                        <a href="#" class="nav-link align-items-center justify-content-center px-0 text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-bank" viewBox="0 0 16 16">
+                                <path
+                                    d="m8 0 6.61 3h.89a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v7a.5.5 0 0 1 .485.38l.5 2a.498.498 0 0 1-.485.62H.5a.498.498 0 0 1-.485-.62l.5-2A.5.5 0 0 1 1 13V6H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 3h.89zM3.777 3h8.447L8 1zM2 6v7h1V6zm2 0v7h2.5V6zm3.5 0v7h1V6zm2 0v7H12V6zM13 6v7h1V6zm2-1V4H1v1zm-.39 9H1.39l-.25 1h13.72z" />
+                            </svg>
+                            <span class="text-white">Unidades Responsáveis</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
 
-            <div class="col">
+            <div class="col" style="margin-top: 80px;">
                 <div class="p-2 fw-bold text-secondary d-flex">
-                    <a class="navbar-brand h4 fs-4 text-secondary" href="#">
+                    <a class="navbar-brand h4 fs-4 text-secondary" href="{{ route('coordenador.visualizar-resultados') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                             class="bi bi-arrow-left-short" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"

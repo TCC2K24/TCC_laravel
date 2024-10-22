@@ -12,6 +12,10 @@ class resultado extends Model
 
    protected $fillable = ['resultados'];
 
+    public function Resultado() : HasOne {
+        return $this->hasOne(Resultado::class);
+    }
+
     public function Pesquisa() : BelongsTo {
         return $this->belongsTo(Pesquisa::class);
     }

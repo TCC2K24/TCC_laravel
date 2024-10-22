@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -12,10 +12,10 @@
 
 <body>
 
-    <div class="nav flex-column">
-        <nav class="navbar navbar-light bg-light">
-            <div class="container-fluid align-items-center">
-                <a class="navbar-brand mb-0 h1 fs-3 fw-bold text-secondary" href="#">
+     <!-- Navbar fixa -->
+     <nav class="navbar navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+        <a class="navbar-brand mb-0 h1 fs-3 fw-bold text-secondary" href="{{ route('discente.participar-pesquisas') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                         class="bi bi-arrow-left-short" viewBox="0 0 16 16">
                         <path fill-rule="evenodd"
@@ -28,12 +28,10 @@
                     class="bi bi-person-fill" viewBox="0 0 16 16">
                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
                 </svg>
+        </div>
+    </nav>
 
-            </div>
-        </nav>
-    </div>
-
-    <div class="d-flex justify-content-center align-items-center mt-3">
+    <div class="d-flex justify-content-center align-items-center" style="margin-top: 80px;">
         <div class="card w-75">
             <div class="card-header bg-danger p-2" style="--bs-bg-opacity: .5;">
                 Matéria/Disciplina
