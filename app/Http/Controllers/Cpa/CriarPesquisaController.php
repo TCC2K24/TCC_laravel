@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Cpa;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Cpa\CriarPesquisa;
+use App\Models\Cpa\pesquisa;
 
 class CriarPesquisaController extends Controller
 {
@@ -26,7 +26,7 @@ class CriarPesquisaController extends Controller
         ]);
 
         // Criação da nova pesquisa
-        CriarPesquisa::create($validatedData);
+        pesquisa::create($validatedData);
 
 
          // Define a sessão de sucesso

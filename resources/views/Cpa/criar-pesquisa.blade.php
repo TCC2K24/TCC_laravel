@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -14,7 +14,7 @@
     <div class="nav flex-column">
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid align-items-center">
-                <a class="navbar-brand mb-0 h1 fs-3 fw-bold text-secondary" href="#">
+                <a class="navbar-brand mb-0 h1 fs-3 fw-bold text-secondary" href="{{ route('cpa.minhas-pesquisas') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                         class="bi bi-arrow-left-short" viewBox="0 0 16 16">
                         <path fill-rule="evenodd"
