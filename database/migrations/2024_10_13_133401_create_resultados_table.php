@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('resultados', function (Blueprint $table) {
             $table->id('idResultado');
             $table->json('resultados');
+            $table->foreignId('id_pesquisa')->references('idPesquisa')->on('pesquisas');
             $table->timestamps();
         });
     }

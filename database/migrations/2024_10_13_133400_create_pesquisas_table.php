@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('periodo', 50);
             $table->date('dataInicio')->default(now());
             $table->date('dataFim');
-            $table->foreignId('id_resultado')->references('idResultado')->on('resultados');
             $table->timestamps();
         });
 
