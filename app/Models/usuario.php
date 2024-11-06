@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Foundation\Auth\User as Authenticable;
 use App\Models\cpa\pesquisa;
 use App\Models\cpa\certificado;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,12 +10,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class usuario extends Model
+class usuario extends Authenticable
 {
     use HasFactory;
 
-    protected $fillable = ['GRR','senha','curso','tipoUsuario'];
-    protected $hidden = ['senha'];
+    protected $primaryKey = 'idUsuario';
+    protected $guard = 'usuario';
+    protected $fillable = ['GRR','password','curso'];
+    protected $hidden = ['senha','remember_token'];
 
 
     public function Disciplina() : BelongsToMany {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Database\Factories\Cpa;
+namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\cpa\certificado>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\setor>
  */
-class certificadoFactory extends Factory
+class SetorFactory extends Factory
 {
     /**
      * Define the model's default state.

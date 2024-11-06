@@ -12,7 +12,9 @@ class Curso extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'idCurso';
     protected $fillable = ['nomeCurso'];
+    public $timestamps = false;
 
     public function Setor() : BelongsTo {
         return $this->belongsTo(Setor::class);

@@ -5,7 +5,7 @@
                 <a class="navbar-brand mb-0 h1 fs-3 fw-bold text-secondary" href="#">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Logo_oficial_da_UFPR_%28fundo_branco%29.svg/1200px-Logo_oficial_da_UFPR_%28fundo_branco%29.svg.png"
                         alt="Logo" width="60" height="50" class="d-inline-block align-items-center">
-                    Formulários UFPR
+                    Formulários UFPR Acesso Servidor
                 </a>
             </div>
         </nav>
@@ -18,13 +18,13 @@
             <div class="card-body">
                 <x-input-error name='error' />
                 <h1>Log in UFPRforms</h1>
-                <form action="{{route('login.store')}}" method="post" class="form-group" autocomplete="off">
+                <form action="{{route('login')}}" method="post" class="form-group" autocomplete="off">
                     @csrf
                     <div class="form-group mb-3 mt-4">
                         <label for="login">Usuário:</label>
-                        <input type="text" id="login" class="form-control" placeholder="Usuário" name="GRR"  required/>
+                        <input type="email" id="login" class="form-control" placeholder="Usuário" name="email"  required/>
                       
-                            <x-input-error name="GRR" />
+                            <x-input-error name="email" />
                       
                     </div>
                     <div class="form-group mb-3">
@@ -43,7 +43,11 @@
     </div>
 
 
-  
+    <a
+    href="#"
+    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+>
+    Register
 </a>
 
 
