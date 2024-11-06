@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Curso;
+use App\Models\Setor;
+use App\Models\usuario;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,9 +17,17 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $setor = Setor::factory()->create([
+            'nomeSetor' =>'SEPT'
         ]);
+        
+        Curso::factory()->create([
+            'setor_id' =>1,
+            'nomeCurso' =>'TADS',
+            
+        ]);
+
+        usuario::factory()->create();
+
     }
 }

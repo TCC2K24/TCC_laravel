@@ -10,7 +10,10 @@ class Setor extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'idSetor';
     protected $filable = ['nomeSetor'];
+    public $timestamps = false;
+    
 
     public function Cursos():HasMany{
         return $this->hasMany(Curso::class);

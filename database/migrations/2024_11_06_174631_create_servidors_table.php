@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('usuarios', function (Blueprint $table) {
-            $table->id('idUsuario');
-            $table->string('GRR');
+        Schema::create('servidors', function (Blueprint $table) {
+            $table->id();
+            $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
-            $table->foreignId('curso_id')->references('idCurso')->on('cursos');
             $table->timestamps();
         });
-
-       
     }
 
     /**
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('servidors');
     }
 };
