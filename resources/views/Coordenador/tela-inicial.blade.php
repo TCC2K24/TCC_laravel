@@ -9,14 +9,14 @@
                 <!-- Navbar lateral -->
                 <ul class="nav nav-pills flex-column list-group" style="margin-top: 95px;">
                     <li class="nav-item list-group-item list-group-item-action list-group-item-primary active">
-                        <a href="{{ route('cpa.tela-inicial') }}" class="nav-link align-items-center justify-content-center px-0 text-white">
+                        <a href="{{ route('coordenador.tela-inicial') }}" class="nav-link align-items-center justify-content-center px-0 text-white">
                             <i class="bi bi-house-door"></i>
                             <span class="text-white">Início</span>
                         </a>
                     </li>
  
                     <li class="nav-item list-group-item list-group-item-action list-group-item-primary">
-                        <a href="{{ route('cpa.resultados') }}" class="nav-link align-items-center justify-content-center px-0 text-white">
+                        <a href="{{ route('coordenador.resultados') }}" class="nav-link align-items-center justify-content-center px-0 text-white">
                             <i class="bi bi-bar-chart-line"></i>
                             <span class="text-white">Resultados</span>
                         </a>
