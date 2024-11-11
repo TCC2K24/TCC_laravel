@@ -4,11 +4,15 @@ namespace App\Http\Controllers\Cpa;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Cpa\pesquisa;
 
-class CriarPesquisaController extends Controller
+class PesquisaController extends Controller
 {
-   
+    public function minhasPesquisas()
+    {
+        // Carregar a Tela
+        return view('Cpa/minhas-pesquisas');
+    }
+
     public function criarPesquisa()
     {
         // Carregar a Tela

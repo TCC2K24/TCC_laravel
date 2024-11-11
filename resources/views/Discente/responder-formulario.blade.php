@@ -1,16 +1,7 @@
 <x-app-layout>
 
-     <!-- Navbar fixa -->
-    <nav class="navbar navbar-light bg-light fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand mb-0 h1 fs-3 fw-bold text-secondary" href="{{ route('discente.participar-pesquisas') }}">
-                <i class="bi bi-arrow-left-short"></i> Matéria
-            </a>
-
-            <i class="bi bi-person-fill" style="font-size: 30px;"></i>
-
-        </div>
-    </nav>
+    @auth('usuario')
+    <x-navigation></x-navigation>
 
     <div class="d-flex justify-content-center align-items-center" style="margin-top: 80px;">
         <div class="card w-75">
@@ -149,5 +140,12 @@
     </div>
 
     <!--Adicionar poppup de conformação de envio-->
+
+    @else
+        <!-- Não autenticados -->
+        <div class="container d-flex align-items-center justify-content-center vh-100">
+            <p class="text-center text-danger fw-bold">Usuário não autenticado.</p>
+        </div>
+    @endauth
     
 </x-app-layout>

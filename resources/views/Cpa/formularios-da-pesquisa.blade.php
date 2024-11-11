@@ -1,5 +1,5 @@
 <x-app-layout>
-
+    @auth('servidor')
     <!-- Navbar fixa -->
     <div class="nav flex-column">
         <nav class="navbar navbar-light bg-light">
@@ -51,4 +51,10 @@
         <button class="btn btn-success" type="submit">Novo Formulário</button>
     </div>
 
+    @else
+        <!-- Não autenticados -->
+        <div class="container d-flex align-items-center justify-content-center vh-100">
+            <p class="text-center text-danger fw-bold">Usuário não autenticado.</p>
+        </div>
+    @endauth
 </x-app-layout>

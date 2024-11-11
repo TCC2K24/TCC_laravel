@@ -1,4 +1,5 @@
 <x-app-layout>
+    @auth('servidor')
 
     <div class="nav flex-column">
         <nav class="navbar navbar-light bg-light">
@@ -154,5 +155,12 @@
         <!--Adicionar poppup de confirmação de Pesquisa Criada-->
         
     </form>
+
+    @else
+        <!-- Não autenticados -->
+        <div class="container d-flex align-items-center justify-content-center vh-100">
+            <p class="text-center text-danger fw-bold">Usuário não autenticado.</p>
+        </div>
+    @endauth
 
 </x-app-layout>

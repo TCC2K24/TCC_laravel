@@ -4,12 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioControler;
 
 
-use App\Http\Controllers\Discente\TelaInicialDiscenteController;
-use App\Http\Controllers\Discente\ParticiparPesquisasDiscenteController;
-use App\Http\Controllers\Discente\VisualizarPesquisasDiscenteController;
-use App\Http\Controllers\Discente\ResponderFormularioDiscenteController;
-use App\Http\Controllers\Discente\MeusCertificadosDiscenteController;
-use App\Http\Controllers\Discente\MeuCertificadoDiscenteController;
+use App\Http\Controllers\TelasController;
+use App\Http\Controllers\Discente\PesquisaController;
+use App\Http\Controllers\Discente\CertificadoController;
 
 
 //Route::get('/', function () {
@@ -25,22 +22,22 @@ Route::controller(UsuarioControler::class)->group(function (){
 
 
 // Rota da Tela Inicial - DISCENTE
-Route::get('/tela-inicial-discente', [TelaInicialDiscenteController::class, 'telaInicialDiscente'])->name('discente.tela-inicial');
+Route::get('/tela-inicial', [TelasController::class, 'telaInicial'])->name('tela-inicial-d');
 
 // Rota da Tela de Participar de Pesquisas - DISCENTE
-Route::get('/participar-pesquisas-discente', [ParticiparPesquisasDiscenteController::class, 'participarPesquisasDiscente'])->name('discente.participar-pesquisas');
+Route::get('/participar-pesquisas-discente', [PesquisaController::class, 'participarPesquisasDiscente'])->name('discente.participar-pesquisas');
 
 // Rota da Tela de Participar de Pesquisas - DISCENTE
-Route::get('/visualizar-pesquisas-discente', [VisualizarPesquisasDiscenteController::class, 'visualizarPesquisasDiscente'])->name('discente.visualizar-pesquisas');
+Route::get('/visualizar-pesquisas-discente', [PesquisaController::class, 'visualizarPesquisasDiscente'])->name('discente.visualizar-pesquisas');
 
 // Rota da Tela de Responder Formulários - DISCENTE
-Route::get('/responder-formulario-discente', [ResponderFormularioDiscenteController::class, 'responderFormularioDiscente'])->name("discente.responder-formulario");
+Route::get('/responder-formulario-discente', [PesquisaController::class, 'responderFormularioDiscente'])->name("discente.responder-formulario");
 
 // Rota da Tela de Meus Certificados - DISCENTE
-Route::get('/meus-certificados-discente', [MeusCertificadosDiscenteController::class, 'meusCertificadosDiscente'])->name("discente.meus-certificados");
+Route::get('/meus-certificados-discente', [CertificadoController::class, 'meusCertificadosDiscente'])->name("discente.meus-certificados");
 
 // Rota da Tela de Meu Certificado - DISCENTE
-Route::get('/meu-certificado-discente', [MeuCertificadoDiscenteController::class, 'meuCertificadoDiscente'])->name("discente.meu-certificado");
+Route::get('/meu-certificado-discente', [CertificadoController::class, 'meuCertificadoDiscente'])->name("discente.meu-certificado");
 
 
 

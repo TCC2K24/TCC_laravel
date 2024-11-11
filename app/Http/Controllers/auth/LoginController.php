@@ -28,7 +28,7 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('cpa.tela-inicial', absolute: false));
+        return redirect()->intended(route('tela-inicial-s', absolute: false));
     }
 
     /**

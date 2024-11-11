@@ -1,16 +1,7 @@
 <x-app-layout>
 
-    <!-- Navbar fixa -->
-    <nav class="navbar navbar-light bg-light fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand mb-0 h1 fs-3 fw-bold text-secondary" href="{{ route('cpa.modelos-de-formulario') }}">
-                <i class="bi bi-arrow-left-short"></i> Novo Formulário
-            </a>
-
-            <i class="bi bi-person-fill" style="font-size: 30px;"></i>
-
-        </div>
-    </nav>
+    @auth('servidor')    
+    <x-navigation></x-navigation>
 
     <!--TELA PARA CRIAR A PERGUNTA-->
     <div class="d-flex m-3" style="margin-top: 80px;">
@@ -226,14 +217,16 @@
                     <div class="d-grid gap-2 col-6 mx-auto p-5">
                         <button class="btn btn-success" type="submit">Salvar</button>
                     </div>
-
                 </div>
             </div>
-
-
-
         </div>
-
     </div>
+
+    @else
+        <!-- Não autenticados -->
+        <div class="container d-flex align-items-center justify-content-center vh-100">
+            <p class="text-center text-danger fw-bold">Usuário não autenticado.</p>
+        </div>
+    @endauth
 
 </x-app-layout>

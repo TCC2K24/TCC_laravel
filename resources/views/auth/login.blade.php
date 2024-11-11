@@ -11,7 +11,6 @@
         </nav>
     </div>
 
-       
    
     <div class="cartao d-flex justify-content-center align-items-center vh-100 bg-light bg-gradient">
         <div class="card bg-white w-50 p-5 h-50">
@@ -49,8 +48,6 @@
 >
     Register
 </a>
-
-
 
 
 </x-app-layout>

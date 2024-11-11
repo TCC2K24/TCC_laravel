@@ -1,52 +1,14 @@
 <x-app-layout>
     
-    <!-- Navbar fixa -->
-    <nav class="navbar navbar-light bg-light fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand mb-0 h1 fs-3 fw-bold text-secondary" href="#">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Logo_oficial_da_UFPR_%28fundo_branco%29.svg/1200px-Logo_oficial_da_UFPR_%28fundo_branco%29.svg.png"
-                    alt="Logo" width="60" height="50" class="d-inline-block align-items-center">
-                Formulários UFPR
-            </a>
-            <i class="bi bi-person-fill" style="font-size: 30px;"></i>
-        </div>
-    </nav>
+    @if(auth('usuario')->check() || auth('servidor')->check())
+    <x-navigation></x-navigation>
 
     <!-- Conteúdo da página -->
     <div class="container-fluid">
         <div class="row flex-nowrap">
-            <div class="col-auto bg-light vh-100">
-                <!-- Navbar lateral -->
-                <ul class="nav nav-pills flex-column list-group" style="margin-top: 95px;">
-                    <li class="nav-item list-group-item list-group-item-action list-group-item-primary">
-                        <a href="{{ route('discente.tela-inicial') }}" class="nav-link align-items-center justify-content-center px-0 text-white">
-                            <i class="bi bi-house-door"></i>
-                            <span class="text-white">Início</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item list-group-item list-group-item-action list-group-item-primary active">
-                        <a href="{{ route('discente.visualizar-pesquisas') }}" class="nav-link align-items-center justify-content-center px-0 text-white">
-                            <i class="bi bi-journal-text"></i>
-                            <span class="text-white">Minhas Pesquisas</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item list-group-item list-group-item-action list-group-item-primary">
-                        <a href="{{ route('discente.meus-certificados') }}" class="nav-link align-items-center justify-content-center px-0 text-white">
-                            <i class="bi bi-clipboard2-check"></i>
-                            <span class="text-white">Meus Certificados</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item list-group-item list-group-item-action list-group-item-primary">
-                        <a href="#" class="nav-link align-items-center justify-content-center px-0 text-white">
-                            <i class="bi bi-bank"></i>
-                            <span class="text-white">Unidades Responsáveis</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            
+            <!--Sidebar-->
+            <x-sidebar></x-sidebar>
 
             <div class="col" style="margin-top: 80px;">
                 <div class="p-2 fw-bold text-secondary d-flex">
@@ -206,5 +168,12 @@
 
         </div>
     </div>
+
+    @else
+        <!-- Não autenticados -->
+        <div class="container d-flex align-items-center justify-content-center vh-100">
+            <p class="text-center text-danger fw-bold">Usuário não autenticado.</p>
+        </div>
+    @endauth
 
 </x-app-layout>

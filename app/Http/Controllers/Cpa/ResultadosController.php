@@ -13,4 +13,21 @@ class ResultadosController extends Controller
         return view("Cpa/resultados");
     }
     
+    public function visualizarResultados()
+    {
+        // Retornar a Tela
+        return view("Cpa/visualizar-resultados");
+    }
+
+    public function visualizarResultadosFormulario()
+    {
+        // Retornar a Tela
+        return view("Cpa/visualizar-resultados-formulario");
+    }
+
+    public function visualizarResultadosPesquisa()
+    {
+        // Retornar a Tela
+        return view("Cpa/visualizar-resultados-pesquisa");
+    }
 }
