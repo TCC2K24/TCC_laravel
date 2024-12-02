@@ -9,13 +9,11 @@ class CertificadoController extends Controller
 {
     public function meuCertificadoDiscente()
     {
-        // Retornar a Tela
         return view("Discente.meu-certificado");
     }
 
     public function meusCertificadosDiscente()
     {
-        // Retornar a Tela
         return view("Discente.meus-certificados");
     }
 }

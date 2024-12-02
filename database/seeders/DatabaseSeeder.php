@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        $setor = Setor::factory()->create([
+        /*$setor = Setor::factory()->create([
             'nomeSetor' =>'SEPT'
         ]);
         
@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             'nomeCurso' =>'TADS',
             
         ]);
-
+        */
         usuario::factory()->create();
 
     }

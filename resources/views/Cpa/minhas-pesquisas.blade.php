@@ -90,10 +90,11 @@
                         </div>
 
                         <div class="d-grid gap-2 col-2 p-3">
-                            <a href="{{ route('cpa.store') }}"> 
-                            <button class="btn btn-success">Nova Pesquisa</button>
+                            <a href="{{ route('cpa.store') }}" class="btn btn-success d-inline-flex align-items-center justify-content-center">
+                                Nova Pesquisa
                             </a>
                         </div>
+
 
                         <div class="mt-3">
                             <div class="table-responsive">
@@ -104,60 +105,35 @@
                                             <th scope="col" class="table-secondary">Pesquisa</th>
                                             <th scope="col" class="table-secondary">Disponível de</th>
                                             <th scope="col" class="table-secondary">Disponível até</th>
-                                            <th scope="col" class="table-secondary">Grupo</th>
+                                            <th scope="col" class="table-secondary">Setor</th>
                                             <th scope="col" class="table-secondary">Situação</th>
                                             <th scope="col" class="table-secondary">Acompanhamento</th>
                                         </tr>
                                     </thead>
 
                                     <tbody class="table-group-divider">
-
-                                        <tr>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Em espera</td>
-                                            <td class="text-warning fw-bold">Postar</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Fechado</td>
-                                            <td class="text-success fw-bold">Finalizado</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Pendente</td>
-                                            <td class="text-danger fw-bold">Pesquisa</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Pendente</td>
-                                            <td class="text-danger fw-bold">Pesquisa</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Em espera</td>
-                                            <td class="text-warning fw-bold">Postar</td>
-                                        </tr>
-
+                                        @forelse($pesquisas as $pesquisa)
+                                            <tr>
+                                                <td>
+                                                    <a href="{{ route('cpa.show', ['id' => $pesquisa->idPesquisa]) }}">
+                                                        {{ $pesquisa->descricao }}
+                                                    </a>
+                                                </td>
+                                                <td>{{ $pesquisa->dataInicio }}</td>
+                                                <td>{{ $pesquisa->dataFim }}</td>
+                                                <td>{{ $pesquisa->setor_id }}</td>
+                                                <td>{{ $pesquisa->status }}</td>
+                                                <td class="text-{{ $pesquisa->status === 'em aberto' ? 'warning' : ($pesquisa->situacao === 'Fechado' ? 'success' : 'danger') }} fw-bold">
+                                                    {{ $pesquisa->status === 'em aberto' ? 'Postar' : ($pesquisa->situacao === 'Fechado' ? 'Finalizado' : 'Pesquisa') }}
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="6" class="text-center">Nenhuma pesquisa encontrada</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>

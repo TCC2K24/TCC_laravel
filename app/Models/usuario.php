@@ -21,7 +21,7 @@ class usuario extends Authenticable
 
 
     public function Disciplina() : BelongsToMany {
-        return $this->belongsToMany(Disciplina::class);
+        return $this->belongsToMany(Disciplina::class, 'usuario_disciplina', 'usuario_id', 'disciplina_id');
     }
 
    public function Pesquisa() : BelongsToMany {

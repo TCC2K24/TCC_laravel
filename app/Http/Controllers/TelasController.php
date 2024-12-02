@@ -9,7 +9,6 @@ class TelasController extends Controller
 {
     public function telaInicial()
     {
-        // Retornar a Tela
         return view('tela-inicial');
     }
 }

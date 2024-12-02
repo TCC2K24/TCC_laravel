@@ -60,71 +60,26 @@
                                     </thead>
 
                                     <tbody class="table-group-divider">
-
-                                        <tr>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Fechado</td>
-                                            <td>
-                                                <a href="#" class="text-success fw-bold">
-                                                    <i class="bi bi-eye"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Fechado</td>
-                                            <td>
-                                                <a href="#" class="text-success fw-bold">
-                                                    <i class="bi bi-eye"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Fechado</td>
-                                            <td>
-                                                <a href="#" class="text-success fw-bold">
-                                                    <i class="bi bi-eye"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Fechado</td>
-                                            <td>
-                                                <a href="#" class="text-success fw-bold">
-                                                    <i class="bi bi-eye"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Fechado</td>
-                                            <td>
-                                                <a href="#" class="text-success fw-bold">
-                                                    <i class="bi bi-eye"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        @forelse($pesquisas as $pesquisa)
+                                            <tr>
+                                                <td>
+                                                    <a href="{{ route('cpa.visualizar-resultados', ['idPesquisa' => $pesquisa->idPesquisa]) }}">
+                                                        {{ $pesquisa->descricao }}
+                                                    </a>
+                                                </td>
+                                                <td>{{ $pesquisa->dataInicio }}</td>
+                                                <td>{{ $pesquisa->dataFim }}</td>
+                                                <td>{{ $pesquisa->setor }}</td>
+                                                <td>{{ $pesquisa->status }}</td>
+                                                <td class="text-{{ $pesquisa->status === 'em aberto' ? 'warning' : ($pesquisa->situacao === 'Fechado' ? 'success' : 'danger') }} fw-bold">
+                                                    {{ $pesquisa->status === 'em aberto' ? 'Postar' : ($pesquisa->situacao === 'Fechado' ? 'Finalizado' : 'Pesquisa') }}
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="6" class="text-center">Nenhuma pesquisa encontrada</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

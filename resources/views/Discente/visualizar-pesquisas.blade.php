@@ -98,63 +98,27 @@
                                             <th scope="col" class="table-secondary">Pesquisa</th>
                                             <th scope="col" class="table-secondary">Disponível de</th>
                                             <th scope="col" class="table-secondary">Disponível até</th>
-                                            <th scope="col" class="table-secondary">Grupo</th>
                                             <th scope="col" class="table-secondary">Situação</th>
-                                            <th scope="col" class="table-secondary">Acompanhamento</th>
                                         </tr>
                                     </thead>
 
                                     <tbody class="table-group-divider">
-
-                                        <tr>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Aberto</td>
-                                            <td>
-                                                <a href="{{ route('discente.participar-pesquisas') }}" class="text-warning fw-bold text-decoration-none">Fazendo</a>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Fechado</td>
-                                            <td>
-                                                <a href="#" class="text-success fw-bold text-decoration-none">Finalizado</a>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Pendente</td>
-                                            <td class="text-danger fw-bold">Pesquisa</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Pendente</td>
-                                            <td class="text-danger fw-bold">Pesquisa</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Aberto</td>
-                                            <td class="text-warning fw-bold">Fazendo</td>
-                                        </tr>
-
+                                        @forelse($pesquisas as $pesquisa)
+                                            <tr>
+                                                <td>
+                                                    <a href="{{ route('discente.participar-pesquisas', ['id' => $pesquisa->idPesquisa]) }}">
+                                                        {{ $pesquisa->descricao }}
+                                                    </a>
+                                                </td>
+                                                <td>{{ $pesquisa->dataInicio }}</td>
+                                                <td>{{ $pesquisa->dataFim }}</td>
+                                                <td>{{ $pesquisa->status }}</td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="6" class="text-center">Nenhuma pesquisa encontrada</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
 

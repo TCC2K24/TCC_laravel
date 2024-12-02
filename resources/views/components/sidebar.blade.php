@@ -1,17 +1,16 @@
 <div class="col-auto bg-light vh-100">
     <ul class="nav nav-pills flex-column list-group" style="margin-top: 95px;">
         <li class="nav-item list-group-item list-group-item-action list-group-item-primary {{ Route::is('tela-inicial-s', 'tela-inicial-d') ? 'active' : '' }}">
-            <a href="{{ auth()->check() && auth()->user()->hasRole('servidor') ? 
-                        route('tela-inicial-s') : 
-                        route('tela-inicial-d') }}" 
-                        class="nav-link align-items-center justify-content-center px-0 text-white">
+            <a href="{{ auth('servidor')->check() ? route('tela-inicial-s') : (auth('usuario')->check() ? route('tela-inicial-d') : '#') }}" 
+               class="nav-link align-items-center justify-content-center px-0 text-white">
                 <i class="bi bi-house-door"></i>
                 <span class="text-white">Início</span>
             </a>
         </li>
 
-        <li class="nav-item list-group-item list-group-item-action list-group-item-primary {{ Route::is('discente.visualizar-pesquisas') ? 'active' : '' }}">
-            <a href="{{ route('discente.visualizar-pesquisas') }}" class="nav-link align-items-center justify-content-center px-0 text-white">
+        <li class="nav-item list-group-item list-group-item-action list-group-item-primary {{ Route::is('discente.visualizar-pesquisas', ('cpa.minhas-pesquisas')) ? 'active' : '' }}">
+            <a href="{{ auth('servidor')->check() ? route('cpa.minhas-pesquisas') : (auth('usuario')->check() ? route('discente.visualizar-pesquisas') : '#') }}" 
+                class="nav-link align-items-center justify-content-center px-0 text-white">
                 <i class="bi bi-journal-text"></i>
                 <span class="text-white">Minhas Pesquisas</span>
             </a>

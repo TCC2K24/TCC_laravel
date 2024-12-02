@@ -4,23 +4,42 @@ namespace App\Http\Controllers\Cpa;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Cpa\pesquisa;
+use App\Models\Cpa\formulario;
+use App\Models\Disciplina;
+
 
 class FormulariosController extends Controller
 {
-    public function criarFormulario()
+    public function criarFormulario($idPesquisa)
     {
-        // Retornar a Tela
-        return view('Cpa.criar-formulario');
+        $pesquisa = Pesquisa::findOrFail($idPesquisa);
+        $cursos = $pesquisa->Curso;  
+        $disciplinas = $cursos->pluck('Disciplina')->flatten();
+
+        return view('cpa.criar-formulario', compact('pesquisa'));
     }
-    
-    public function formulariosDaPesquisa()
+
+    public function formulariosDaPesquisa($id)
     {
-        return view('Cpa/formularios-da-pesquisa');
+        $pesquisa = Pesquisa::findOrFail($id);
+        $formularios = $pesquisa->Formulario()->with('disciplina')->get();
+
+        return view('cpa.formularios-da-pesquisa', compact('pesquisa', 'formularios'));
+    }
+
+    public function destroy($idPesquisa, $idFormulario)
+    {
+        $formulario = Formulario::findOrFail($idFormulario);
+        $pesquisaId = Pesquisa::findOrFail($idPesquisa);
+        $formulario->delete();
+
+        return redirect()->route('cpa.formularios-da-pesquisa', ['id' => $pesquisaId])
+                        ->with('success', 'Formulário excluído com sucesso!');
     }
 
     public function modelosDeFomulario()
     {
-        // Retornar a Tela
         return view('Cpa.modelos-de-formulario');
     }
 

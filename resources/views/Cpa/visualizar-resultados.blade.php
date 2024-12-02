@@ -14,41 +14,29 @@
                 <i class="bi bi-person-fill" style="font-size: 30px;"></i>
 
             </div>
-            
         </nav>
     </div>
 
     <div class="d-flex justify-content-center align-items-center mt-5">
         <div class="fs-3 fw-bold text-secondary">
-            <h3>Formulários</h3>
+            <h3>Formulários da Pesquisa: {{ $pesquisa->descricao }}</h3>
         </div>
     </div>
 
-    <div class="d-flex justify-content-center align-items-center mt-3">
-        <div class="card col-md-6">
-            <h5 class="card-header">Matéria</h5>
-            <div class="card-body">
-                <h5 class="card-title">Informação</h5>
-                <p class="card-text">Descrição.</p>
-                <div class="d-flex justify-content-end">
-                    <a href="#" class="btn btn-outline-primary m-1">Ver Resultado</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    @foreach($formularios as $index => $formulario)
     <div class="d-flex justify-content-center align-items-center mt-3"> 
         <div class="card col-md-6">
-            <h5 class="card-header">Matéria</h5>
+            <h5 class="card-header">{{ $formulario->titulo }}</h5>
             <div class="card-body">
-                <h5 class="card-title">Informação</h5>
-                <p class="card-text">Descrição.</p>
+                <h5 class="card-title">{{ $formulario->descricao }}</h5>
+                <p class="card-text">{{ $formulario->informacoes }}</p>
                 <div class="d-flex justify-content-end">
-                    <a href="#" class="btn btn-outline-primary m-1">Ver Resultado</a>
+                    <a href="{{ route('cpa.visualizar-resultados-formulario', ['idPesquisa' => $pesquisa->idPesquisa, 'position' => $index + 1]) }}" class="btn btn-outline-primary m-1">Ver Resultado</a>
                 </div>
             </div>
         </div>
     </div>
+    @endforeach
 
     @else
         <!-- Não autenticados -->

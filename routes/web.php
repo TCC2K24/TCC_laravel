@@ -25,13 +25,16 @@ Route::controller(UsuarioControler::class)->group(function (){
 Route::get('/tela-inicial', [TelasController::class, 'telaInicial'])->name('tela-inicial-d');
 
 // Rota da Tela de Participar de Pesquisas - DISCENTE
-Route::get('/participar-pesquisas-discente', [PesquisaController::class, 'participarPesquisasDiscente'])->name('discente.participar-pesquisas');
+Route::get('/pesquisa/{id}', [PesquisaController::class, 'participarPesquisasDiscente'])->name('discente.participar-pesquisas');
 
 // Rota da Tela de Participar de Pesquisas - DISCENTE
 Route::get('/visualizar-pesquisas-discente', [PesquisaController::class, 'visualizarPesquisasDiscente'])->name('discente.visualizar-pesquisas');
 
 // Rota da Tela de Responder Formulários - DISCENTE
-Route::get('/responder-formulario-discente', [PesquisaController::class, 'responderFormularioDiscente'])->name("discente.responder-formulario");
+Route::get('/pesquisa/{idPesquisa}/{idFormulario}', [PesquisaController::class, 'responderFormularioDiscente'])->name('discente.responder-formulario');
+
+// Rota da Tela de Enviar Formulários - DISCENTE
+Route::post('/pesquisa/{idPesquisa}/{idFormulario}', [PesquisaController::class, 'enviarResposta'])->name('discente.responder-formulario');
 
 // Rota da Tela de Meus Certificados - DISCENTE
 Route::get('/meus-certificados-discente', [CertificadoController::class, 'meusCertificadosDiscente'])->name("discente.meus-certificados");

@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('formularios', function (Blueprint $table) {
             $table->id('idFormulario');
+            $table->string('nome_formulario', 50);
             $table->json('dados');
             $table->integer('tempoDeParticipacao');
             $table->foreignId('pesquisa_id')->references('idPesquisa')->on('pesquisas');
+            $table->foreignId('disciplina_id')->references('idDisciplina')->on('disciplinas');
             $table->timestamps();
         });
     }
