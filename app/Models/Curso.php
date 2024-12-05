@@ -17,14 +17,19 @@ class Curso extends Model
     public $timestamps = false;
 
     public function Setor() : BelongsTo {
-        return $this->belongsTo(Setor::class);
+        return $this->belongsTo(Setor::class, 'setor_id'); 
     }
 
     public function Disciplina() : BelongsToMany {
-        return $this->belongsToMany(Disciplina::class);
+        return $this->belongsToMany(Disciplina::class, 'curso_disciplina', 'curso_id', 'disciplina_id');
     }
 
     public function Usuario() : HasMany {
         return $this->hasMany(Usuario::class);
+    }
+
+    public function pesquisas() : BelongsToMany
+    {
+        return $this->belongsToMany(Pesquisa::class, 'pesquisa_curso', 'curso_id', 'pesquisa_id');
     }
 }

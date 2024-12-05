@@ -9,8 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class resultado extends Model
 {
     use HasFactory;
-
-   protected $fillable = ['resultados'];
+    
+    protected $primaryKey = 'idResultado';
+    protected $fillable = ['resultados', 'id_pesquisa', 'id_formulario'];
 
     public function Resultado() : HasOne {
         return $this->hasOne(Resultado::class);
@@ -18,5 +19,9 @@ class resultado extends Model
 
     public function Pesquisa() : BelongsTo {
         return $this->belongsTo(Pesquisa::class);
+    }
+
+    public function Formulario() : BelongsTo {
+        return $this->belongsTo(Formulario::class);
     }
 }

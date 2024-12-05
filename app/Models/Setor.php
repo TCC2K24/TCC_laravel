@@ -11,12 +11,17 @@ class Setor extends Model
     use HasFactory;
 
     protected $primaryKey = 'idSetor';
-    protected $filable = ['nomeSetor'];
+    protected $fillable = ['nomeSetor'];
     public $timestamps = false;
     
 
     public function Cursos():HasMany{
         return $this->hasMany(Curso::class);
+    }
+
+    public function Pesquisas(): HasMany
+    {
+        return $this->hasMany(Pesquisa::class, 'setor_id');
     }
 
 }

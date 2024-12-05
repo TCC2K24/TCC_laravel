@@ -1,59 +1,13 @@
 <x-app-layout>
-
-    <!-- Navbar fixa -->
-    <nav class="navbar navbar-light bg-light fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand mb-0 h1 fs-3 fw-bold text-secondary" href="#">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Logo_oficial_da_UFPR_%28fundo_branco%29.svg/1200px-Logo_oficial_da_UFPR_%28fundo_branco%29.svg.png"
-                    alt="Logo" width="60" height="50" class="d-inline-block align-items-center">
-                Formulários UFPR
-            </a>
-            <i class="bi bi-person-fill" style="font-size: 30px;"></i>
-        </div>
-    </nav>
+    @auth('servidor')
+    <x-navigation></x-navigation>
 
     <!-- Conteúdo da página -->
     <div class="container-fluid">
         <div class="row flex-nowrap">
-            <div class="col-auto bg-light vh-100">
-                <!-- Navbar lateral -->
-                <ul class="nav nav-pills flex-column list-group" style="margin-top: 95px;">
-                    <li class="nav-item list-group-item list-group-item-action list-group-item-primary">
-                        <a href="{{ route('cpa.tela-inicial') }}" class="nav-link align-items-center justify-content-center px-0 text-white">
-                            <i class="bi bi-house-door"></i>
-                            <span class="text-white">Início</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item list-group-item list-group-item-action list-group-item-primary active">
-                        <a href="{{ route('cpa.minhas-pesquisas') }}" class="nav-link align-items-center justify-content-center px-0 text-white">
-                            <i class="bi bi-journal-text"></i>
-                            <span class="text-white">Minhas Pesquisas</span>
-                        </a>
-                    </li>
-
-                        <li class="nav-item list-group-item list-group-item-action list-group-item-primary">
-                            <a href="{{ route('cpa.modelos-de-formulario') }}" class="nav-link align-items-center justify-content-center px-0 text-white">
-                                <i class="bi bi-border-all"></i>
-                                <span class="text-white">Modelos de Formulários</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-item list-group-item list-group-item-action list-group-item-primary">
-                            <a href="{{ route('cpa.resultados') }}" class="nav-link align-items-center justify-content-center px-0 text-white">
-                                <i class="bi bi-bar-chart-line"></i>
-                                <span class="text-white">Resultados</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-item list-group-item list-group-item-action list-group-item-primary">
-                            <a href="#" class="nav-link align-items-center justify-content-center px-0 text-white">
-                                <i class="bi bi-bank"></i>
-                                <span class="text-white">Unidades Responsáveis</span>
-                            </a>
-                        </li>
-                        </ul>
-            </div>
+           
+            <!--Sidebar-->
+            <x-sidebar></x-sidebar>
 
             <div class="col" style="margin-top: 80px;">
                 <div class="p-2 fw-bold text-secondary d-flex">
@@ -136,10 +90,11 @@
                         </div>
 
                         <div class="d-grid gap-2 col-2 p-3">
-                            <a href="{{ route('cpa.store') }}"> 
-                            <button class="btn btn-success">Nova Pesquisa</button>
+                            <a href="{{ route('cpa.store') }}" class="btn btn-success d-inline-flex align-items-center justify-content-center">
+                                Nova Pesquisa
                             </a>
                         </div>
+
 
                         <div class="mt-3">
                             <div class="table-responsive">
@@ -150,71 +105,47 @@
                                             <th scope="col" class="table-secondary">Pesquisa</th>
                                             <th scope="col" class="table-secondary">Disponível de</th>
                                             <th scope="col" class="table-secondary">Disponível até</th>
-                                            <th scope="col" class="table-secondary">Grupo</th>
+                                            <th scope="col" class="table-secondary">Setor</th>
                                             <th scope="col" class="table-secondary">Situação</th>
                                             <th scope="col" class="table-secondary">Acompanhamento</th>
                                         </tr>
                                     </thead>
 
                                     <tbody class="table-group-divider">
-
-                                        <tr>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Em espera</td>
-                                            <td class="text-warning fw-bold">Postar</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Fechado</td>
-                                            <td class="text-success fw-bold">Finalizado</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Pendente</td>
-                                            <td class="text-danger fw-bold">Pesquisa</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Pendente</td>
-                                            <td class="text-danger fw-bold">Pesquisa</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Em espera</td>
-                                            <td class="text-warning fw-bold">Postar</td>
-                                        </tr>
-
+                                        @forelse($pesquisas as $pesquisa)
+                                            <tr>
+                                                <td>
+                                                    <a href="{{ route('cpa.show', ['id' => $pesquisa->idPesquisa]) }}">
+                                                        {{ $pesquisa->descricao }}
+                                                    </a>
+                                                </td>
+                                                <td>{{ $pesquisa->dataInicio }}</td>
+                                                <td>{{ $pesquisa->dataFim }}</td>
+                                                <td>{{ $pesquisa->setor_id }}</td>
+                                                <td>{{ $pesquisa->status }}</td>
+                                                <td class="text-{{ $pesquisa->status === 'em aberto' ? 'warning' : ($pesquisa->situacao === 'Fechado' ? 'success' : 'danger') }} fw-bold">
+                                                    {{ $pesquisa->status === 'em aberto' ? 'Postar' : ($pesquisa->situacao === 'Fechado' ? 'Finalizado' : 'Pesquisa') }}
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="6" class="text-center">Nenhuma pesquisa encontrada</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
-                                </table>
 
+                                </table>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
-
+    @else
+        <!-- Não autenticados -->
+        <div class="container d-flex align-items-center justify-content-center vh-100">
+            <p class="text-center text-danger fw-bold">Usuário não autenticado.</p>
+        </div>
+    @endauth
 </x-app-layout>

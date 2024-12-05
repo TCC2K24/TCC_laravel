@@ -45,7 +45,7 @@ class UsuarioControler extends Controller
         }
 
 
-        return redirect()->route('discente.tela-inicial')->with('success','logado');
+        return redirect()->route('tela-inicial-d')->with('success','logado');
     }
 
     /**

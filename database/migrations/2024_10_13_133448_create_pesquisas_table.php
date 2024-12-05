@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('periodo', 50);
             $table->date('dataInicio')->default(now());
             $table->date('dataFim');
+            $table->string('status', 20)->default('em aberto');
+            $table->unsignedBigInteger('setor_id'); // Coluna para setor, compatível com bigint
+            $table->foreign('setor_id')->references('idSetor')->on('setores')->onDelete('cascade'); // Define a FK com setor
             $table->timestamps();
         });
 
@@ -41,6 +44,8 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('pesquisa_usuario');
+        Schema::dropIfExists('pesquisa_curso');
         Schema::dropIfExists('pesquisas');
     }
 };
