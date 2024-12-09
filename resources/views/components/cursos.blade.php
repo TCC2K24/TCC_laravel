@@ -3,7 +3,8 @@
 @else
     @foreach ($cursos as $curso)
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="curso_id[]" value="{{ $curso->idCurso }}" id="curso_{{ $curso->idCurso }}">
+            <input class="form-check-input" type="checkbox" name="curso_id[]" value="{{ $curso->idCurso }}" id="curso_{{ $curso->idCurso }}" 
+                @if($cursosSelecionados->contains($curso->idCurso)) checked @endif>
             <label class="form-check-label" for="curso_{{ $curso->idCurso }}">
                 {{ $curso->nomeCurso }}
             </label>
