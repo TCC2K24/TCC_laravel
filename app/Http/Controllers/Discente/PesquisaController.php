@@ -57,6 +57,7 @@ class PesquisaController extends Controller
 
     public function enviarResposta(Request $request, $idPesquisa, $idFormulario)
     {
+        $idUsuario = auth('usuario')->user()->idUsuario; 
 
         $request->validate([
             'respostas' => 'required|array',
@@ -67,7 +68,8 @@ class PesquisaController extends Controller
         Resultado::create([
             'resultados' => json_encode($respostas), 
             'id_pesquisa' => $idPesquisa,
-            'id_formulario' => $idFormulario,  
+            'id_formulario' => $idFormulario, 
+            'id_usuario' => $idUsuario,
         ]);
 
         return redirect()->route('tela-inicial-d')->with('success', 'Respostas enviadas com sucesso!');

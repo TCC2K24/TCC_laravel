@@ -36,6 +36,12 @@ Route::get('/cursos/{setorId}', [PesquisaController::class, 'getCursosPorSetor']
 // Rota de Criar Pesquisa - CPA (POST)
 Route::post('/criar-pesquisa-cpa', [PesquisaController::class, 'store'])->name('cpa.store');
 
+// Rota da tela Editar Pesquisa - CPA (GET)
+Route::get('/pesquisa/{id}/editar', [PesquisaController::class, 'editarPesquisa'])->name('cpa.editar-pesquisa');
+
+
+Route::put('/pesquisa/{id}', [PesquisaController::class, 'salvarEdicao'])->name('cpa.salvar-edicao-pesquisa');
+
 // Rota para mostrar pesquisa
 Route::get('/pesquisa/{id}', [PesquisaController::class, 'show'])->name('cpa.show');
 

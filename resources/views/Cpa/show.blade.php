@@ -76,13 +76,19 @@
                 </div>
             </div>
         </div>
-
-        <!-- Botão Novo Formulário -->
-        <div class="d-flex justify-content-center mt-5">
+    
+        <div class="d-flex justify-content-center mt-5 gap-3">
+            <!-- Botão de Formulários -->
             <a href="{{ route('cpa.formularios-da-pesquisa', ['id' => $pesquisa->idPesquisa]) }}" class="btn btn-success border border-dark">
                 <i class="bi bi-file-earmark-plus"></i> Formulários
             </a>
+
+            <!-- Botão de Editar -->
+            <a href="{{ route('cpa.editar-pesquisa', ['id' => $pesquisa->idPesquisa]) }}" class="btn btn-primary border border-dark">
+                <i class="bi bi-pencil-square"></i> Editar
+            </a>
         </div>
+
         
     </div>
 

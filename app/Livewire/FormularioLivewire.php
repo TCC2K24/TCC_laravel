@@ -51,23 +51,21 @@ class FormularioLivewire extends Component
     }
 
     public function salvarFormulario()
-{
-    $this->validate([
-        'nomeFormulario' => 'required|string|max:255',
-    ]);
+    {
+        $this->validate([
+            'nomeFormulario' => 'required|string|max:255',
+        ]);
 
-    Formulario::create([
-        'nome_formulario' => $this->nomeFormulario,
-        'dados' => json_encode($this->perguntas),
-        'tempoDeParticipacao' => $this->tempoDeParticipacao,
-        'pesquisa_id' => $this->pesquisaId,
-        'disciplina_id' => $this->disciplinaId,
-    ]);
+        Formulario::create([
+            'nome_formulario' => $this->nomeFormulario,
+            'dados' => json_encode($this->perguntas),
+            'tempoDeParticipacao' => $this->tempoDeParticipacao,
+            'pesquisa_id' => $this->pesquisaId,
+            'disciplina_id' => $this->disciplinaId,
+        ]);
 
-    return redirect()->route('cpa.formularios-da-pesquisa', ['id' => $this->pesquisaId]);
-}
-
-
+        return redirect()->route('cpa.formularios-da-pesquisa', ['id' => $this->pesquisaId]);
+    }
 
     public function render()
     {

@@ -4,6 +4,7 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticable;
 use App\Models\cpa\pesquisa;
 use App\Models\cpa\certificado;
+use App\Models\cpa\resultado;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -34,6 +35,10 @@ class usuario extends Authenticable
 
     public function Certificado() : HasMany {
         return $this->hasMany(Certificado::class);
+    }
+
+    public function Resultado() : HasMany {
+        return $this->hasMany(Resultado::class);
     }
 
 }
