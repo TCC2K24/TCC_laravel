@@ -50,69 +50,29 @@
                                 <table class="table table-bordered align-middle">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="table-secondary">Emissão</th>
                                             <th scope="col" class="table-secondary">Pesquisa</th>
                                             <th scope="col" class="table-secondary">Disponível de</th>
                                             <th scope="col" class="table-secondary">Disponível até</th>
-                                            <th scope="col" class="table-secondary">Grupo</th>
-                                            <th scope="col" class="table-secondary">Situação</th>
+                                            <th scope="col" class="table-secondary">Setor</th>
                                             <th scope="col" class="table-secondary">Acompanhamento</th>
                                         </tr>
                                     </thead>
 
                                     <tbody class="table-group-divider">
-
+                                        @foreach ($pesquisasRespondidas as $pesquisa)
                                         <tr>
-                                            <td>dd/mm/aaaa</td>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Fechado</td>
+                                            <td>{{$pesquisa->descricao}}</td>
+                                            <td>{{$pesquisa->dataInicio}}</td>
+                                            <td>{{$pesquisa->dataFim}}</td>
+                                            <td>{{$pesquisa->setor_id}}</td>
                                             <td>
-                                                <a href="{{ route('discente.meu-certificado') }}" class="text-success fw-bold text-decoration-none">Finalizado</a>
+                                                <a href="{{ route('gerar-certificado',['idPesquisa'=>$pesquisa->idPesquisa])}}" target="_blank" class="text-success fw-bold text-decoration-none">Baixar</a>
                                             </td>
                                         </tr>
+                                        @endforeach
+                                    
+                                       
 
-                                        <tr>
-                                            <td>dd/mm/aaaa</td>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Fechado</td>
-                                            <td class="text-success fw-bold">Finalizado</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>dd/mm/aaaa</td>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Fechado</td>
-                                            <td class="text-success fw-bold">Finalizado</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>dd/mm/aaaa</td>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Fechado</td>
-                                            <td class="text-success fw-bold">Finalizado</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>dd/mm/aaaa</td>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Fechado</td>
-                                            <td class="text-success fw-bold">Finalizado</td>
-                                        </tr>
 
                                     </tbody>
                                 </table>

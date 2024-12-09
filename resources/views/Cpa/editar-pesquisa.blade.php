@@ -26,9 +26,12 @@
                             <option value="">--- Selecione ---</option>
                             <option value="Qualidade do Curso" {{ $pesquisa->tipo == 'Qualidade do Curso' ? 'selected' : '' }}>Qualidade do Curso</option>
                             <option value="Infraestrutura" {{ $pesquisa->tipo == 'Infraestrutura' ? 'selected' : '' }}>Infraestrutura</option>
-                            <!-- Outras opções -->
+                            <option value="Satisfação Geral" {{ $pesquisa->tipo == 'Satisfação Geral' ? 'selected' : '' }}>Satisfação Geral</option>
+                            <!-- Adicione outras opções conforme necessário -->
                         </select>
-                        <div class="invalid-feedback">Por Favor, selecione o Tipo de Pesquisa.</div>
+                        <div class="invalid-feedback">
+                            Por Favor, selecione o Tipo de Pesquisa.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -38,14 +41,17 @@
                 <div class="card-body">
                     <p class="card-text">Informe o Nome:</p>
                     <div class="form-group flex-nowrap">
-                        <input type="text" name="descricao" class="form-control is-valid" placeholder="Nome da Pesquisa" value="{{ $pesquisa->descricao }}" required>
-                        <div class="invalid-feedback">Por Favor, informe o Nome da Pesquisa.</div>
+                        <input type="text" name="descricao" class="form-control is-valid" value="{{ $pesquisa->descricao }}" placeholder="Nome da Pesquisa" aria-label="Nome" required>
+                        <div class="invalid-feedback">
+                            Por Favor, informe o Nome da Pesquisa.
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="d-flex justify-content-center align-items-center mt-3">
+
 
             <div class="card w-25 m-3">
                 <h5 class="card-header">Período</h5>
@@ -55,6 +61,7 @@
                         <select name="periodo" class="form-control" required>
                             <option value="Período 1" {{ $pesquisa->periodo == 'Período 1' ? 'selected' : '' }}>Período 1</option>
                             <option value="Período 2" {{ $pesquisa->periodo == 'Período 2' ? 'selected' : '' }}>Período 2</option>
+                            <option value="Período 2" {{ $pesquisa->periodo == 'Período 3' ? 'selected' : '' }}>Período 3</option>
                             <!-- Outras opções -->
                         </select>
                         <div class="invalid-feedback">Por Favor, informe o Período da Pesquisa.</div>
@@ -70,10 +77,14 @@
                         <select id="setor" name="setor_id" class="form-control" required>
                             <option value="">--- Selecione ---</option>
                             @foreach ($setores as $setor)
-                                <option value="{{ $setor->idSetor }}" {{ $pesquisa->setor_id == $setor->idSetor ? 'selected' : '' }}>{{ $setor->nomeSetor }}</option>
+                                <option value="{{ $setor->idSetor }}" {{ $pesquisa->setor_id == $setor->idSetor ? 'selected' : '' }}>
+                                    {{ $setor->nomeSetor }}
+                                </option>
                             @endforeach
                         </select>
-                        <div class="invalid-feedback">Por Favor, informe o Setor da Pesquisa.</div>
+                        <div class="invalid-feedback">
+                            Por Favor, informe o Setor da Pesquisa.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -85,8 +96,8 @@
                 <div class="card-body">
                     <p class="card-text">Informe o(os) Curso(os):</p>
                     <div class="col-auto form-group" id="cursos">
-                        <!-- Cursos serão carregados aqui após selecionar o setor -->
-                        @include('components.cursos', ['cursos' => $cursos, 'cursosSelecionados' => $pesquisa->Curso->pluck('idCurso')])
+                        <!-- Os cursos serão carregados aqui após selecionar o setor -->
+                        @include('components.cursos', ['cursos' => $cursos, 'cursosSelecionados' => $cursosSelecionados])
                     </div>
                 </div>
             </div>
@@ -97,14 +108,16 @@
                     <p class="card-text">Informe a Data Limite:</p>
                     <div class="form-group flex-nowrap">
                         <input type="date" name="dataFim" class="form-control is-valid" value="{{ $pesquisa->dataFim }}" required>
-                        <div class="invalid-feedback">Por Favor, informe a Data Limite da Pesquisa.</div>
+                        <div class="invalid-feedback">
+                            Por Favor, informe a Data Limite da Pesquisa.
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="d-grid gap-2 col-3 mx-auto p-5">
-            <button class="btn btn-success" type="submit">Salvar Alterações</button>
+            <button class="btn btn-success" type="submit">Salvar</button>
         </div>
     </form>
 
@@ -119,51 +132,31 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-$(document).ready(function() {
-    // Ao mudar o setor
-    $('#setor').change(function() {
-        var setorId = $(this).val();  // Obtém o ID do setor selecionado
-        
-        // Verifica se um setor foi selecionado
-        if (setorId) {
-            $.ajax({
-                url: '/servidor/cursos/' + setorId, // URL correta para buscar os cursos
-                type: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    console.log('Dados JSON recebidos:', data);
+    $(document).ready(function() {
+        $('#setor').change(function() {
+            var setorId = $(this).val();
+            var cursosSelecionados = []; // Adapte para pegar os cursos selecionados
 
-                    // Limpa a lista de cursos antes de preencher
-                    $('#cursos').html('');
-
-                    // Adiciona os cursos à lista de checkboxes
-                    if (data.length > 0) {
-                        data.forEach(function(curso) {
-                            var isChecked = {{ json_encode($cursosSelecionados) }}.includes(curso.idCurso);
-                            var cursoHtml = `
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="curso_id[]" value="${curso.idCurso}" id="curso_${curso.idCurso}" ${isChecked ? 'checked' : ''}>
-                                    <label class="form-check-label" for="curso_${curso.idCurso}">
-                                        ${curso.nomeCurso}
-                                    </label>
-                                </div>
-                            `;
-                            $('#cursos').append(cursoHtml);
-                        });
-                    } else {
-                        $('#cursos').html('<p>Nenhum curso disponível para este setor.</p>');
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('Erro ao carregar cursos:', error);
-                    alert('Erro ao carregar cursos.');
-                }
+            // Coletar cursos selecionados
+            $('input[name="curso_id[]"]:checked').each(function() {
+                cursosSelecionados.push($(this).val());
             });
-        } else {
-            // Se nenhum setor for selecionado, limpe a lista de cursos
-            $('#cursos').html('');
-        }
-    });
-});
 
+            if (setorId) {
+                $.ajax({
+                    url: '/servidor/cursos/' + setorId, // URL para pegar os cursos do setor
+                    type: 'GET',
+                    data: {
+                        cursosSelecionados: cursosSelecionados
+                    },
+                    success: function(data) {
+                        $('#cursos').html(data); // Atualiza a lista de cursos
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Erro ao carregar cursos:', error);
+                    }
+                });
+            }
+        });
+    });
 </script>

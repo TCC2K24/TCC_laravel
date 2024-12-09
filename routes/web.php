@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioControler;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 use App\Http\Controllers\TelasController;
@@ -9,17 +10,20 @@ use App\Http\Controllers\Discente\PesquisaController;
 use App\Http\Controllers\Discente\CertificadoController;
 
 
+
 //Route::get('/', function () {
 //    return view('welcome');
 //});
+
+Route::get('/', function () {
+    return redirect()->route('usuario.login'); // Redireciona para a rota de login
+});
 
 // Rota de login
 Route::controller(UsuarioControler::class)->group(function (){
     Route::get('/login','index')->name('usuario.login');
     Route::post('/login','store')->name('login.store');
 });
-
-
 
 // Rota da Tela Inicial - DISCENTE
 Route::get('/tela-inicial', [TelasController::class, 'telaInicial'])->name('tela-inicial-d');
@@ -40,7 +44,8 @@ Route::post('/pesquisa/{idPesquisa}/{idFormulario}', [PesquisaController::class,
 Route::get('/meus-certificados-discente', [CertificadoController::class, 'meusCertificadosDiscente'])->name("discente.meus-certificados");
 
 // Rota da Tela de Meu Certificado - DISCENTE
-Route::get('/meu-certificado-discente', [CertificadoController::class, 'meuCertificadoDiscente'])->name("discente.meu-certificado");
+Route::get('/meu-certificado-discente/{idPesquisa}', [CertificadoController::class, 'meuCertificadoDiscente'])->name("discente.meu-certificado");
+Route::get('/gerar-certificado/{idPesquisa}',[CertificadoController::class, 'gerarCertificado'])->name('gerar-certificado');
 
 
 

@@ -41,14 +41,7 @@
             </div>
         </div>
     </div>
-
-
-  
-</a>
-
-
-
-
+    <a href="{{ route('login') }}" class="btn btn-link">Acesso Servidor</a>
 </x-app-layout>
 
   

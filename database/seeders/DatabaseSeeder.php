@@ -17,16 +17,16 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        /*$setor = Setor::factory()->create([
-            'nomeSetor' =>'SEPT'
-        ]);
+     //   $setor = Setor::factory()->create([
+      //      'nomeSetor' =>'SEPT'
+      //  ]);
         
-        Curso::factory()->create([
-            'setor_id' =>1,
-            'nomeCurso' =>'TADS',
+      //  Curso::factory()->create([
+       //     'setor_id' =>1,
+        //    'nomeCurso' =>'TADS',
             
-        ]);
-        */
+       // ]);
+        
         usuario::factory()->create();
 
     }

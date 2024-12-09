@@ -37,11 +37,11 @@
 
                                         <tr>
                                             <td>dd/mm/aaaa</td>
-                                            <td>Pesquisa</td>
-                                            <td>Data</td>
-                                            <td>Data</td>
-                                            <td>Grupo</td>
-                                            <td>Fechado</td>
+                                            <td>{{$pesquisa->descricao}}</td>
+                                            <td>{{$pesquisa->dataInicio}}</td>
+                                            <td>{{$pesquisa->dataFim}}</td>
+                                            <td>{{$pesquisa->setor_id}}</td>
+                                            <td>{{$pesquisa->status}}</td>
                                             <td class="text-success fw-bold">Finalizado</td>
                                         </tr>
 
@@ -49,9 +49,11 @@
                                 </table>
 
                                 <div class="mt-3">
+                                    <a href="{{ route('gerar-certificado',['idPesquisa'=>$pesquisa->idPesquisa])}}">
                                     <button type="submit" class="btn btn-success" type="submit">
                                         <i class="bi bi-download"></i> Baixar
                                     </button>
+                                    </a>
                                 </div>
 
                                 <div class="bg-light mt-4">
