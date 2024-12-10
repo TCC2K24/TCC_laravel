@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('dataFim');
             $table->string('status', 20)->default('em aberto');
             $table->unsignedBigInteger('setor_id'); // Coluna para setor, compatível com bigint
-            $table->foreign('setor_id')->references('idSetor')->on('setores')->onDelete('cascade'); // Define a FK com setor
+            $table->foreign('setor_id')->references('idSetor')->on('setors')->onDelete('cascade'); // Define a FK com setor
             $table->timestamps();
         });
 

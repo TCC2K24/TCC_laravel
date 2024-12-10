@@ -11,9 +11,9 @@
     @if ($formularios->isEmpty())
         <div class="d-flex justify-content-center align-items-center mt-3">
             <div class="card col-md-6">
-                <h5 class="card-header">Nenhum Formulário Criado</h5>
+                <h5 class="card-header">Nenhum Formulário</h5>
                 <div class="card-body">
-                    <p class="card-text">Ainda não há formulários cadastrados para esta pesquisa.</p>
+                    <p class="card-text">Você respondeu todos os formulários.</p>
                 </div>
             </div>
         </div>
@@ -26,9 +26,15 @@
                     <div class="card-body">
                         <h5 class="card-title">Disciplina: {{ $formulario->disciplina->nomeDisciplina }}</h5>
                         <p class="card-text">Tempo de Participação: {{ $formulario->tempoDeParticipacao }} minutos</p>
+                        @if(!$formulariosRespondidos->contains($formulario->idFormulario))
                         <div class="d-flex justify-content-end">
                             <a href="{{ route('discente.responder-formulario', ['idPesquisa' => $formulario->pesquisa->idPesquisa, 'idFormulario' => $formulario->idFormulario]) }}" class="btn btn-outline-primary">Responder</a>
                         </div>
+                        @else
+                        <div class="d-flex justify-content-end">
+                            Formulario Respondido
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

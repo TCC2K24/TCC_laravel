@@ -37,11 +37,12 @@ class LoginController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('servidor')->logout();
+        Auth::guard('usuario')->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return redirect('/servidor/login');
+        return redirect('/login');
     }
 }

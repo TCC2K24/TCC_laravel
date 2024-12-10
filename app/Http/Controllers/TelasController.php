@@ -9,6 +9,8 @@ class TelasController extends Controller
 {
     public function telaInicial()
     {
+                $usuario = auth('usuario')->user();
+        //dd($usuario->idUsuario);
         return view('tela-inicial');
     }
 }

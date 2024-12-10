@@ -13,66 +13,56 @@ class PesquisaController extends Controller
 {
     public function participarPesquisasDiscente($id)
     {
-        $usuarioId = auth('usuario')->user()->idUsuario;
-        $usuario = usuario::find($usuarioId);
+        $usuario = auth('usuario')->user();
+        
+        // usuario disciplinas cadastradas
+        $disciplinas = $usuario->disciplina->pluck('idDisciplina')->toArray();
 
-        $disciplinas = $usuario->disciplina->pluck('idDisciplina');
-
+        // busca pesquisa por id    
         $pesquisa = Pesquisa::findOrFail($id);
+        $formularios = $pesquisa->getFormulariosByDisciplinas($disciplinas);
 
-        $formularios = $pesquisa->Formulario()
-                                ->whereIn('disciplina_id', $disciplinas->toArray())
-                                ->with('disciplina')
-                                ->get();
+        $formulariosRespondidos = $pesquisa->Formulario() // Ou qualquer outra consulta Eloquent
+            ->whereIn('disciplina_id', $disciplinas) // Filtra por disciplinas associadas ao usuário
+            ->whereHas('resultados', function ($query) use ($id, $usuario) {
+                $query->where('resultados.id_pesquisa', $id) // Condição para a pesquisa
+                    ->where('resultados.id_usuario', $usuario->idUsuario); // Condição para o id do usuário
+            })
+            ->pluck('idFormulario'); // Pega os ids dos formulários respondidos
 
-        return view('Discente.participar-pesquisas', compact('pesquisa', 'formularios'));
+        return view('Discente.participar-pesquisas', compact('pesquisa', 'formularios', 'formulariosRespondidos'));
     }
 
     public function visualizarPesquisasDiscente()
     {
-        
-        $usuarioId = auth('usuario')->user()->idUsuario; 
-        $usuario = usuario::find($usuarioId);
+        $usuario = auth('usuario')->user();
+        $cursoId = $usuario->curso_id;
 
-        $cursoId = $usuario->curso_id; 
-    
-        $pesquisas = pesquisa::whereHas('Curso', function($query) use ($cursoId) {
-            $query->where('curso_id', $cursoId);
-        })->get();
+        $pesquisas = Pesquisa::getPesquisasByCurso($cursoId);
 
         return view("Discente.visualizar-pesquisas", compact('pesquisas'));
     }
 
     public function responderFormularioDiscente($idPesquisa, $idFormulario)
     {
-        $pesquisa = pesquisa::with('Curso')->findOrFail($idPesquisa);
-        $formulario = formulario::where('pesquisa_id', $idPesquisa)
-                                ->where('idFormulario', $idFormulario)
-                                ->firstOrFail();
-
-        $perguntas = json_decode($formulario->dados, true);
+        // busca pesquisa por id
+        $pesquisa = Pesquisa::findOrFail($idPesquisa);
+        $formulario = $pesquisa->getFormularioComPerguntas($idFormulario);
+        $perguntas = $formulario->perguntas;
 
         return view('Discente.responder-formulario', compact('pesquisa', 'formulario', 'perguntas'));
     }
 
     public function enviarResposta(Request $request, $idPesquisa, $idFormulario)
     {
-        $idUsuario = auth('usuario')->user()->idUsuario; 
+        $request->validate(['respostas' => 'required|array']);
+        $usuarioId = auth('usuario')->user()->idUsuario;
 
-        $request->validate([
-            'respostas' => 'required|array',
-        ]);
-
-        $respostas = $request->input('respostas');
-
-        Resultado::create([
-            'resultados' => json_encode($respostas), 
-            'id_pesquisa' => $idPesquisa,
-            'id_formulario' => $idFormulario, 
-            'id_usuario' => $idUsuario,
-        ]);
+        $pesquisa = Pesquisa::findOrFail($idPesquisa);
+        $pesquisa->salvarRespostas($request->input('respostas'), $idFormulario, $usuarioId);
 
         return redirect()->route('tela-inicial-d')->with('success', 'Respostas enviadas com sucesso!');
     }
+
 
 }

@@ -145,24 +145,37 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    $(document).ready(function() {
-        $('#setor').change(function() {
-            var setorId = $(this).val();
-            console.log('Setor Selecionado:', setorId); // Verifique se o valor do setor está sendo passado corretamente
-            if (setorId) {
-                $.ajax({
-                    url: '/servidor/cursos/' + setorId, // URL correta
-                    type: 'GET',
-                    success: function(data) {
-                        console.log('Dados recebidos:', data); // Verifique a resposta
-                        $('#cursos').html(data); // Atualiza a lista de cursos
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Erro:', error);
-                        alert('Erro ao carregar os cursos.');
-                    }
-                });
-            }
+ $(document).ready(function() {
+    $('#setor').change(function() {
+        var setorId = $(this).val();
+        var cursosSelecionados = []; // Defina sua lógica para pegar os cursos selecionados
+
+        // Coletar os cursos selecionados, assumindo que os checkboxes de cursos têm o nome 'curso_id[]'
+        $('input[name="curso_id[]"]:checked').each(function() {
+            cursosSelecionados.push($(this).val());
         });
+
+        console.log('Setor Selecionado:', setorId);
+        console.log('Cursos Selecionados:', cursosSelecionados);
+
+        if (setorId) {
+            $.ajax({
+                url: '/servidor/cursos/' + setorId, // URL correta
+                type: 'GET',
+                data: {
+                    cursosSelecionados: cursosSelecionados // Envia os cursos selecionados para o servidor
+                },
+                success: function(data) {
+                    console.log('Dados recebidos:', data); // Verifique a resposta
+                    $('#cursos').html(data); // Atualiza a lista de cursos
+                },
+                error: function(xhr, status, error) {
+                    console.error('Erro:', error);
+                    alert('Erro ao carregar os cursos.');
+                }
+            });
+        }
     });
+});
+
 </script>

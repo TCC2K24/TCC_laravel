@@ -39,15 +39,19 @@ Route::post('/criar-pesquisa-cpa', [PesquisaController::class, 'store'])->name('
 // Rota da tela Editar Pesquisa - CPA (GET)
 Route::get('/pesquisa/{id}/editar', [PesquisaController::class, 'editarPesquisa'])->name('cpa.editar-pesquisa');
 
+// Rota Remover Pesquisa - Delete
+Route::delete('/pesquisa/{id}/remover', [PesquisaController::class, 'delete'])->name('cpa.remover-pesquisa');
 
-Route::put('/pesquisa/{id}', [PesquisaController::class, 'salvarEdicao'])->name('cpa.salvar-edicao-pesquisa');
+Route::put('/pesquisa/{id}', [PesquisaController::class, 'update'])->name('cpa.salvar-edicao-pesquisa');
 
 // Rota para mostrar pesquisa
 Route::get('/pesquisa/{id}', [PesquisaController::class, 'show'])->name('cpa.show');
 
-// falta excluir e editar
+// postar
+Route::get('/pesquisa/{id}/postar', [PesquisaController::class, 'postar'])->name('cpa.postar');
 
-
+// finalizar
+Route::get('/pesquisa/{id}/finalizar', [PesquisaController::class, 'finalizar'])->name('cpa.finalizar');
 
 
 
@@ -60,11 +64,14 @@ Route::get('/modelos-de-formulario', [FormulariosController::class, 'modelosDeFo
 // Rota da Tela de Criar Formulário - CPA
 Route::get('/pesquisa/{idPesquisa}/formulario/novo', [FormulariosController:: class, 'criarFormulario'])->name('cpa.criar-formulario');
 
+// rota da tela para editar formulário
+Route::get('formularios/{idFormulario}/editar', [FormulariosController::class, 'editarFormulario'])->name('cpa.editar-formulario');
+
 // rota para deleeter formulario
 Route::delete('/pesquisa/{idPesquisa}/formulario/{idFormulario}', [FormulariosController::class, 'destroy'])->name('cpa.excluir-formulario');
 
 // falta criar a rota de put, atualmente ta numa função porém tem q passar para uma rota pra ficar bonitinho
-
+Route::put('/pesquisa/{idPesquisa}/formulario/editar',[FormulariosController::class,'editarFormulario']);
 // falta editas
 
 

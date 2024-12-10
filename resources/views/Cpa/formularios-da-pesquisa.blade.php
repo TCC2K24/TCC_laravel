@@ -34,19 +34,25 @@
         @foreach ($formularios as $formulario)
             <div class="d-flex justify-content-center align-items-center mt-3">
                 <div class="card col-md-6">
-                    <h5 class="card-header">Formulário {{ $formulario->nome_formulario }}</h5>
+                    <h5 class="card-header">{{ $formulario->nome_formulario }}</h5>
                     <div class="card-body">
                         <h5 class="card-title">Disciplina: {{ $formulario->disciplina->nomeDisciplina }}</h5>
                         <p class="card-text">Tempo de Participação: {{ $formulario->tempoDeParticipacao }} minutos</p>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route('tela-inicial-s', ['id' => $formulario->idFormulario]) }}" 
-                               class="btn btn-outline-primary m-1">Editar</a>
+
+                            @if ($pesquisa->status != 'postada')
+                            <!-- Link para a nova rota de edição -->
+                            <a href="{{ route('cpa.editar-formulario', ['idFormulario' => $formulario->idFormulario]) }}" 
+                            class="btn btn-outline-primary m-1">Editar</a>
+                            
+                            <!-- Formulário para exclusão -->
                             <form action="{{ route('cpa.excluir-formulario', ['idPesquisa' => $pesquisa->idPesquisa, 'idFormulario' => $formulario->idFormulario]) }}" 
-                                  method="POST" class="m-1">
+                                method="POST" class="m-1">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Tem certeza que deseja excluir este formulário?')">Excluir</button>
                             </form>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -54,6 +60,7 @@
         @endforeach
     @endif
 
+    @if ($pesquisa->status != 'postada')
     <!-- Botão para Novo Formulário -->
     <div class="d-flex justify-content-center mt-5">
         <a href="{{ route('cpa.criar-formulario', ['idPesquisa' => $pesquisa->idPesquisa]) }}" 
@@ -61,6 +68,8 @@
             <i class="bi bi-file-earmark-plus"></i> Novo Formulário
         </a>
     </div>
+    @endif
+
     @else
         <!-- Não autenticados -->
         <div class="container d-flex align-items-center justify-content-center vh-100">
