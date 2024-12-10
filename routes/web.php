@@ -44,7 +44,6 @@ Route::post('/pesquisa/{idPesquisa}/{idFormulario}', [PesquisaController::class,
 Route::get('/meus-certificados-discente', [CertificadoController::class, 'meusCertificadosDiscente'])->name("discente.meus-certificados");
 
 // Rota da Tela de Meu Certificado - DISCENTE
-Route::get('/meu-certificado-discente/{idPesquisa}', [CertificadoController::class, 'meuCertificadoDiscente'])->name("discente.meu-certificado");
 Route::get('/gerar-certificado/{idPesquisa}',[CertificadoController::class, 'gerarCertificado'])->name('gerar-certificado');
 
 

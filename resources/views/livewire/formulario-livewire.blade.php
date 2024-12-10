@@ -1,6 +1,4 @@
 <div class="container" style="margin-top: 80px;">
-    
-
     <div class="card w-100 m-5 mx-auto">
         <h5 class="card-header">Nome do Formulário</h5>
         <div class="card-body">

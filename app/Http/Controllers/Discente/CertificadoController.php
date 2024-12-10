@@ -14,30 +14,28 @@ use App\Models\cpa\resultado;
 
 class CertificadoController extends Controller
 {
-    public function meuCertificadoDiscente($idPesquisa)
-    {
-        $pesquisa = pesquisa::findOrFail($idPesquisa);
-
-        return view("Discente.meu-certificado",compact('pesquisa'));
-    }
-
-    public function meusCertificadosDiscente()
+    public function meusCertificadosDiscente(Request $request)
     {
         $usuarioId = auth('usuario')->user()->idUsuario;
         
-        // Recuperar todas as pesquisas nas quais o usuário respondeu algum formulário
-        $pesquisasRespondidas = Pesquisa::whereHas('Formulario', function ($query) use ($usuarioId) {
+        $query = Pesquisa::whereHas('Formulario', function ($query) use ($usuarioId) {
             $query->whereHas('resultados', function ($query) use ($usuarioId) {
-                $query->where('id_usuario', $usuarioId); // Verifica se o usuário tem resultado nesse formulário
+                $query->where('id_usuario', $usuarioId);
             });
-        })->get();
+        });
+        
+        if ($request->filled('titulo')) {
+            $query->where('descricao', 'like', '%' . $request->titulo . '%');
+        }
+    
+        $pesquisasRespondidas = $query->get();
         
         return view('Discente.meus-certificados', compact('pesquisasRespondidas'));
     }
 
-
     public function gerarCertificado($idPesquisa)
     {
+        $usuario = auth('usuario')->user();
         $usuarioId = auth('usuario')->user()->idUsuario;
 
         // pegando o tempo de participação do usuario na pesquisa
@@ -53,11 +51,11 @@ class CertificadoController extends Controller
 
         $pesquisa = pesquisa::findOrFail($idPesquisa);
         $formularios = formulario::where('pesquisa_id', $idPesquisa)->get();
-        $data['GRR'] = '20221097';
+        $data['GRR'] = $usuario->GRR;
         $data['minutos'] = $minutos;
         $data['horas'] = $horas;
-        $data['inicio'] = '24/06/2024';
-        $data['fim'] = '08/07/2024';
+        $data['inicio'] = $pesquisa->dataInicio;
+        $data['fim'] = $pesquisa->dataFim;
 
         $pdf = Pdf::loadView('discente.certificado', $data)->setPaper('a4', 'landscape');
 

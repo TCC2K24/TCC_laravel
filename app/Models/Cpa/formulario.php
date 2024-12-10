@@ -11,6 +11,9 @@ class formulario extends Model
 {
     use HasFactory;
 
+    protected $table = 'formularios';  // Se o nome da tabela for diferente
+
+
     /**
      * Os atributos que podem ser preenchidos em massa.
      *

@@ -14,13 +14,24 @@ class FormularioLivewire extends Component
     public $disciplinaId;
     public $pesquisaId;
     public $tempoDeParticipacao;
+    public $edita = false; 
+    public $formulario;
 
-    public function mount($pesquisaId)
+    public function mount($pesquisaId, $formulario = null, $dadosFormulario = null)
     {
-        $this->pesquisaId = $pesquisaId;
+    $this->pesquisaId = $pesquisaId;
+
+    if ($this->edita && $formulario) {
+        $this->formulario = $formulario; 
+        $this->nomeFormulario = $formulario->nome_formulario;
+        $this->disciplinaId = $formulario->disciplina_id;
+        $this->tempoDeParticipacao = $formulario->tempoDeParticipacao;
+        $this->perguntas = $dadosFormulario; 
+    } else {
         $this->perguntas = [
             ['pergunta' => '', 'tipo' => 'texto-curto', 'resposta' => '', 'opcoes' => []]
         ];
+    }
     }
 
     public function adicionarPergunta()
@@ -56,16 +67,29 @@ class FormularioLivewire extends Component
             'nomeFormulario' => 'required|string|max:255',
         ]);
 
-        Formulario::create([
-            'nome_formulario' => $this->nomeFormulario,
-            'dados' => json_encode($this->perguntas),
-            'tempoDeParticipacao' => $this->tempoDeParticipacao,
-            'pesquisa_id' => $this->pesquisaId,
-            'disciplina_id' => $this->disciplinaId,
-        ]);
+        if ($this->edita) {
+            // Caso de edição: Atualiza o formulário existente
+            $this->formulario->update([
+                'nome_formulario' => $this->nomeFormulario,
+                'dados' => json_encode($this->perguntas),
+                'tempoDeParticipacao' => $this->tempoDeParticipacao,
+                'pesquisa_id' => $this->pesquisaId,
+                'disciplina_id' => $this->disciplinaId,
+            ]);
+        } else {
+            // Caso de criação: Cria um novo formulário
+            Formulario::create([
+                'nome_formulario' => $this->nomeFormulario,
+                'dados' => json_encode($this->perguntas),
+                'tempoDeParticipacao' => $this->tempoDeParticipacao,
+                'pesquisa_id' => $this->pesquisaId,
+                'disciplina_id' => $this->disciplinaId,
+            ]);
+        }
 
         return redirect()->route('cpa.formularios-da-pesquisa', ['id' => $this->pesquisaId]);
     }
+
 
     public function render()
     {

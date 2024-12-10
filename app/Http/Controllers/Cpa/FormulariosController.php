@@ -20,6 +20,24 @@ class FormulariosController extends Controller
         return view('cpa.criar-formulario', compact('pesquisa'));
     }
 
+    public function editarFormulario($idFormulario)
+    {
+        $formulario = Formulario::findOrFail($idFormulario);
+
+        $dadosFormulario = json_decode($formulario->dados, true);
+
+        $pesquisa = Pesquisa::findOrFail($formulario->pesquisa_id);
+        $cursos = $pesquisa->Curso;
+        $disciplinas = $cursos->pluck('Disciplina')->flatten();
+
+        return view('cpa.criar-formulario', [
+            'pesquisa' => $pesquisa,
+            'formulario' => $formulario,
+            'dadosFormulario' => $dadosFormulario,
+            'edita' => true, 
+        ]);
+    }
+
     public function formulariosDaPesquisa($id)
     {
         $pesquisa = Pesquisa::findOrFail($id);

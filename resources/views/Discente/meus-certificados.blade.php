@@ -18,28 +18,36 @@
                     <div class="ms-2 align-items-center justify-content-center">
                         <div class="p-3 mb-3 bg-light border rounded">
                             <h5>Filtros de Pesquisa</h5>
-                            <div class="col-md-6">
-                                <div class="form-group">
-
-                                    <form role="search">
-                                        <div class="form-group mb-2">
-                                            <label for="tituloPesquisa">Título da Pesquisa:</label>
-                                            <input class="form-control" id="tituloPesquisa" type="search" placeholder="Pesquisar" aria-label="Search">
-                                        </div>
-
-                                        <div class="mt-3">
-                                            <button class="btn btn-outline-success me-2" type="submit">
-                                                <i class="bi bi-search"></i> Pesquisar
-                                            </button>
-                                            
-                                            <button class="btn btn-outline-secondary" type="reset">
-                                                <i class="bi bi-eraser"></i> Limpar
-                                            </button>
-                                        </div>
-                                    </form>
-
+                            <form action="{{ route('discente.meus-certificados') }}" method="GET" class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-2">
+                                        <label for="tituloPesquisa">Título da Pesquisa:</label>
+                                        <input
+                                            class="form-control"
+                                            id="tituloPesquisa"
+                                            name="titulo"
+                                            type="search"
+                                            placeholder="Pesquisar"
+                                            value="{{ request('titulo') }}"
+                                        >
+                                    </div>
                                 </div>
-                            </div>
+
+                                <!-- Botões -->
+                                <div class="col-md-12 mt-3">
+                                    <button class="btn btn-outline-success me-2" type="submit">
+                                        <i class="bi bi-search"></i> Pesquisar
+                                    </button>
+
+                                    <button
+                                        class="btn btn-outline-secondary"
+                                        type="reset"
+                                        onclick="window.location.href='{{ route('discente.meus-certificados') }}'"
+                                    >
+                                        <i class="bi bi-eraser"></i> Limpar
+                                    </button>
+                                </div>
+                            </form>
                             
                         </div>
                         
@@ -64,7 +72,7 @@
                                             <td>{{$pesquisa->descricao}}</td>
                                             <td>{{$pesquisa->dataInicio}}</td>
                                             <td>{{$pesquisa->dataFim}}</td>
-                                            <td>{{$pesquisa->setor_id}}</td>
+                                            <td>{{$pesquisa->Setor->nomeSetor}}</td>
                                             <td>
                                                 <a href="{{ route('gerar-certificado',['idPesquisa'=>$pesquisa->idPesquisa])}}" target="_blank" class="text-success fw-bold text-decoration-none">Baixar</a>
                                             </td>

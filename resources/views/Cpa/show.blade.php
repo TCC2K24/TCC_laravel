@@ -48,7 +48,7 @@
                 <div class="card">
                     <h5 class="card-header">Setor</h5>
                     <div class="card-body">
-                        <p class="card-text">{{ $pesquisa->descricao }}</p>
+                        <p class="card-text">{{ $pesquisa->setor_id }}</p>
                     </div>
                 </div>
             </div>
@@ -78,15 +78,27 @@
         </div>
     
         <div class="d-flex justify-content-center mt-5 gap-3">
-            <!-- Botão de Formulários -->
             <a href="{{ route('cpa.formularios-da-pesquisa', ['id' => $pesquisa->idPesquisa]) }}" class="btn btn-success border border-dark">
                 <i class="bi bi-file-earmark-plus"></i> Formulários
             </a>
-
-            <!-- Botão de Editar -->
+            @if ($pesquisa->status != 'postada')
             <a href="{{ route('cpa.editar-pesquisa', ['id' => $pesquisa->idPesquisa]) }}" class="btn btn-primary border border-dark">
                 <i class="bi bi-pencil-square"></i> Editar
             </a>
+
+            <form action="{{ route('cpa.remover-pesquisa', ['id' => $pesquisa->idPesquisa]) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja remover esta pesquisa?')">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger border border-dark">
+                    <i class="bi bi-trash"></i> Excluir
+                </button>
+            </form>
+            @endif
+            @if ($pesquisa->dataFim < now() && $pesquisa->status)
+            <a href="{{ route('cpa.finalizar', ['id' => $pesquisa->idPesquisa]) }}" class="btn btn-danger border border-dark">
+                <i class="bi bi-check-circle"></i> Finalizar Pesquisa
+            </a>
+            @endif
         </div>
 
         

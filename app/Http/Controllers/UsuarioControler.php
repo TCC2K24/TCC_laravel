@@ -30,23 +30,29 @@ class UsuarioControler extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'GRR' =>['required'],
-            'password'=>['required']
-        ],[
-            'GRR.required'=>'Digite o seu GRR',
-            'password.required'=>'Digite sua senha'
+            'GRR' => ['required'],
+            'password' => ['required'],
+        ], [
+            'GRR.required' => 'Digite o seu GRR',
+            'password.required' => 'Digite sua senha',
         ]);
-
-        $credentials = $request->only('GRR','password');
+    
+        $credentials = $request->only('GRR', 'password');
+        
+        // Tenta autenticar com as credenciais
         $authenticated = Auth::guard('usuario')->attempt($credentials);
-       
-        if(!$authenticated){
-            return redirect()->route('usuario.login')->withErrors(['error'=>'Credenciais inválidas']);
+    
+        if (!$authenticated) {
+            return redirect()->route('usuario.login')->withErrors(['error' => 'Credenciais inválidas']);
         }
-
-
-        return redirect()->route('tela-inicial-d')->with('success','logado');
+    
+        // Recupera o usuário autenticado
+        $usuario = Auth::guard('usuario')->user();
+    
+        // Agora, você pode usar o usuário autenticado
+        return redirect()->route('tela-inicial-d')->with('success', 'Logado');
     }
+    
 
     /**
      * Display the specified resource.

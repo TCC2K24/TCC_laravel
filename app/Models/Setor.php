@@ -25,4 +25,5 @@ class Setor extends Model
         return $this->hasMany(Pesquisa::class, 'setor_id');
     }
 
+    
 }

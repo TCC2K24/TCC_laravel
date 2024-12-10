@@ -14,10 +14,6 @@ class resultado extends Model
     protected $primaryKey = 'idResultado';
     protected $fillable = ['resultados', 'id_pesquisa', 'id_formulario','id_usuario'];
 
-    public function Resultado() : HasOne {
-        return $this->hasOne(Resultado::class);
-    }
-
     public function Pesquisa() : BelongsTo {
         return $this->belongsTo(Pesquisa::class);
     }

@@ -34,7 +34,8 @@
         <h1>CERTIFICADO</h1>
         <p class="corpo">
             O discente portador do GRR{{ $GRR}} participou das Pesquisas de Avaliação de Disciplinas, realizado no período de {{$inicio}} a {{$fim}}, 
-            organizado pela Comissão Própria de Avaliação da Universidade Federal do Paraná, totalizando {{$minutos}} ({{$horas}} horas) de carga horária.
+            organizado pela Comissão Própria de Avaliação da Universidade Federal do Paraná, totalizando {{$minutos}} minutos ({{number_format($horas, 2)}}
+            horas) de carga horária.
         </p>
         <footer class="footer">
             <p>Comissão Própria de Avaliação</p>

@@ -3,7 +3,12 @@
     <x-navigation></x-navigation>
 
     <div class="container mt-5">
-        <livewire:formulario-livewire :pesquisa-id="$pesquisa->idPesquisa" />
+        <livewire:formulario-livewire 
+            :pesquisa-id="$pesquisa->idPesquisa"
+            :formulario="$formulario ?? null"   
+            :dados-formulario="$dadosFormulario ?? []"  
+            :edita="isset($formulario) ? true : false" 
+        />
     </div>
 
     @else
