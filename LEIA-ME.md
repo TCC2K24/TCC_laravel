@@ -18,7 +18,7 @@ Configurar o php para que possa se conectar com o postgreSQL, dentro do arquivo 
 <li>Copiar o arquivo '.env.example' renomeando a cópia para '.env' : cp .env.example .env </li>
 <li>Configurar o .env preencha os campos 'DB_USERNAME' e 'DB_PASSWORD' com as credenciais do postgreSQL</li>
 <li>Gerar uma key com o comando: php artisan key:generate</li>
-<li>Criar um database com o nome GFCPA no postgre: create database  GFCPA</li>
+<li>Criar um database com o nome GFCPA no postgre: create database  gfcpa</li>
 <li>Executar o comando de migração: php artisan db:migrate</li>
 <li>Povoar o banco com o comando : php artisan db:seed</li>
 <li>Executar os seguintes comandos: npm run build e npm run dev</li>
