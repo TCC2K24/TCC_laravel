@@ -4,7 +4,7 @@
     <div class="nav flex-column">
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid align-items-center">
-                <a class="navbar-brand mb-0 h1 fs-3 fw-bold text-secondary" href="{{ route('cpa.minhas-pesquisas') }}">
+                <a class="navbar-brand mb-0 h1 fs-3 fw-bold text-secondary" href="{{ route('cpa.show', ['id' => $pesquisa->idPesquisa]) }}">
                     <i class="bi bi-arrow-left-short"></i> Editar Pesquisa
                 </a>
                 <i class="bi bi-person-fill" style="font-size: 30px;"></i>
@@ -27,7 +27,13 @@
                             <option value="Qualidade do Curso" {{ $pesquisa->tipo == 'Qualidade do Curso' ? 'selected' : '' }}>Qualidade do Curso</option>
                             <option value="Infraestrutura" {{ $pesquisa->tipo == 'Infraestrutura' ? 'selected' : '' }}>Infraestrutura</option>
                             <option value="Satisfação Geral" {{ $pesquisa->tipo == 'Satisfação Geral' ? 'selected' : '' }}>Satisfação Geral</option>
-                            <!-- Adicione outras opções conforme necessário -->
+                            <option value="Atividades de Extensão e Pesquisa" {{ $pesquisa->tipo == 'Atividades de Extensão e Pesquisa' ? 'selected' : '' }}>Atividades de Extensão e Pesquisa</option>
+                            <option value="Serviços Acadêmicos" {{ $pesquisa->tipo == 'Serviços Acadêmicos' ? 'selected' : '' }}>Serviços Acadêmicos</option>
+                            <option value="Políticas de Inclusão e Diversidade" {{ $pesquisa->tipo == 'Políticas de Inclusão e Diversidade' ? 'selected' : '' }}>Políticas de Inclusão e Diversidade</option>
+                            <option value="Mobilidade Acadêmica" {{ $pesquisa->tipo == 'Mobilidade Acadêmica' ? 'selected' : '' }}>Mobilidade Acadêmica</option>
+                            <option value="Empregabilidade e Carreira" {{ $pesquisa->tipo == 'Empregabilidade e Carreira' ? 'selected' : '' }}>Empregabilidade e Carreira</option>
+                            <option value="Comunicação Institucional" {{ $pesquisa->tipo == 'Comunicação Institucional' ? 'selected' : '' }}>Comunicação Institucional</option>
+                            <option value="Experiência do Calouro" {{ $pesquisa->tipo == 'Experiência do Calouro' ? 'selected' : '' }}>Experiência do Calouro</option>
                         </select>
                         <div class="invalid-feedback">
                             Por Favor, selecione o Tipo de Pesquisa.

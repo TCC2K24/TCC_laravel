@@ -2,6 +2,10 @@
     @auth('usuario')
     <x-navigation></x-navigation>
 
+    <a href="{{ route('discente.visualizar-pesquisas') }}">
+    <button type="button" style="margin-left: 20px; margin-top: 100px">Voltar</button>
+    </a>
+    
     <div class="d-flex justify-content-center align-items-center mt-3">
         <div class="card w-75">
             <div class="card-header bg-danger p-2" style="--bs-bg-opacity: .5;">
@@ -9,20 +13,17 @@
             </div>
             <div class="card-body">
                 <blockquote class="blockquote mb-0">
-                    <p>Professor: {{ $pesquisa->professor ?? 'Não informado' }}</p>
                     <p>Cursos:</p>
                     <ul>
                         @if($pesquisa->Curso->isNotEmpty())
                             @foreach($pesquisa->Curso as $curso)
-                                <li>{{ $curso->nomeCurso }}</li> {{-- Substitua "nome" pelo atributo relevante do modelo Curso --}}
+                                <li>{{ $curso->nomeCurso }}</li> 
                             @endforeach
                         @else
                             <li>Não informado</li>
                         @endif
                     </ul>
 
-
-                    <p>Horário: {{ $pesquisa->horario ?? 'Não informado' }}</p>
                 </blockquote>
             </div>
         </div>
@@ -39,26 +40,35 @@
                     </div>
                     <div class="card-body">
                         @if ($pergunta['tipo'] === 'texto-curto')
-                            <input type="text" name="respostas[{{ $index }}]" class="form-control" placeholder="Digite sua resposta">
+                            <input type="text" name="respostas[{{ $index }}]" class="form-control" placeholder="Digite sua resposta" required>
                         @elseif ($pergunta['tipo'] === 'texto-longo')
-                            <textarea name="respostas[{{ $index }}]" class="form-control" rows="4" placeholder="Digite sua resposta"></textarea>
+                            <textarea name="respostas[{{ $index }}]" class="form-control" rows="4" placeholder="Digite sua resposta" required></textarea>
                         @elseif ($pergunta['tipo'] === 'escolha-unica')
                             @foreach ($pergunta['opcoes'] as $opcao)
                                 <div class="form-check">
-                                    <input type="radio" name="respostas[{{ $index }}]" value="{{ $opcao }}" class="form-check-input">
+                                    <input type="radio" name="respostas[{{ $index }}]" value="{{ $opcao }}" class="form-check-input" required>
                                     <label class="form-check-label">{{ $opcao }}</label>
                                 </div>
                             @endforeach
                         @elseif ($pergunta['tipo'] === 'multipla-escolha')
                             @foreach ($pergunta['opcoes'] as $opcao)
                                 <div class="form-check">
-                                    <input type="checkbox" name="respostas[{{ $index }}][]" value="{{ $opcao }}" class="form-check-input">
+                                    <input type="checkbox" name="respostas[{{ $index }}][]" value="{{ $opcao }}" class="form-check-input" required>
                                     <label class="form-check-label">{{ $opcao }}</label>
                                 </div>
                             @endforeach
-                        @elseif ($pergunta['tipo'] === 'estrela')
+                            @elseif ($pergunta['tipo'] === 'estrela')
                             <div class="form-group">
-                                <input type="number" name="respostas[{{ $index }}]" min="1" max="5" class="form-control" placeholder="Avalie de 1 a 5 estrelas">
+                                <div class="d-flex">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        <div class="text-center mx-2">
+                                            <label class="form-check">
+                                                <input type="radio" name="respostas[{{ $index }}]" value="{{ $i }}" class="form-check-input" required>
+                                                <div>{{ $i }}</div> <!-- Número abaixo do botão de rádio -->
+                                            </label>
+                                        </div>
+                                    @endfor
+                                </div>
                             </div>
                         @endif
                     </div>
