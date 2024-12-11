@@ -33,12 +33,15 @@ Configurar o php para que possa se conectar com o postgreSQL, dentro do arquivo 
 <li>Login Servidor: 127.0.0.1:8000/servidor/login</li>
 <li>Login Usuario: 127.0.0.1:8000/login</li>
 
+
 Caso você esteja em uma das rotas e queira ir para a outra basta scrollar pra baixo e clicar no botão no canto inferior esquerdo
+
 
 Por padrão o usuario é cadastrado nas disciplinas:
 <li>Administração de Sistemas/login</li>
 <li>Análise e Projeto de Sistemas</li>
 <li>Análise e Projeto de Sistemas 2</li>
+
 
 Não é possível cadastro por dentro do sistema tendo em vista que esse sistema foi desenvolvido tendo em mente que o sistema seria integrado por outro e o login é apenas um artíficio para demonstrar as diferentes funcionalidades
 
