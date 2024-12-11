@@ -7,7 +7,7 @@
                     <i class="bi bi-arrow-left-short"></i> Pesquisa de Qualidade
                 </a>
 
-                <a href="#">
+                <a href="{{ route('pesquisa.resultados', ['idPesquisa' => $pesquisa->idPesquisa]) }}">
                     <p class="text-danger h6 fw-bold">Clique <mark class="bg-white fw-bold text-primary">AQUI</mark> para ver o Resultado da Pesquisa</p>
                 </a>
 
@@ -26,10 +26,10 @@
     @foreach($formularios as $index => $formulario)
     <div class="d-flex justify-content-center align-items-center mt-3"> 
         <div class="card col-md-6">
-            <h5 class="card-header">{{ $formulario->titulo }}</h5>
+            <h5 class="card-header">{{ $formulario->nome_formulario }}</h5>
             <div class="card-body">
-                <h5 class="card-title">{{ $formulario->descricao }}</h5>
-                <p class="card-text">{{ $formulario->informacoes }}</p>
+                <h5 class="card-title">{{$formulario->disciplina->nomeDisciplina}}</h5>
+                <p class="card-text">Tempo de Participação: {{ $formulario->tempoDeParticipacao }} minutos</p>
                 <div class="d-flex justify-content-end">
                     <a href="{{ route('cpa.visualizar-resultados-formulario', ['idPesquisa' => $pesquisa->idPesquisa, 'position' => $index + 1]) }}" class="btn btn-outline-primary m-1">Ver Resultado</a>
                 </div>

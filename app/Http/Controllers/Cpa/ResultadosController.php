@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Cpa\pesquisa;
 use App\Models\Cpa\formulario;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Response;
+
 
 
 class ResultadosController extends Controller
@@ -22,9 +24,7 @@ class ResultadosController extends Controller
     {
         // busca pesquisa com o id
         $pesquisa = Pesquisa::findOrFail($id);
-
-        $formularios = formulario::where('pesquisa_id', $id)->get();
-
+        $formularios = $pesquisa->Formulario()->with('disciplina')->get();
         return view("Cpa.visualizar-resultados", compact('pesquisa', 'formularios'));
     }
 
@@ -114,10 +114,111 @@ class ResultadosController extends Controller
     
         return view("Cpa.visualizar-resultados-formulario", compact('pesquisa', 'formulario', 'resultados', 'dadosFormulario', 'resultado_total'));
     }
-    
 
-    public function visualizarResultadosPesquisa()
+    public function visualizarResultadosPesquisa($idPesquisa)
     {
-        return view("Cpa/visualizar-resultados-pesquisa");
+        // Busca a pesquisa com o id
+        $pesquisa = Pesquisa::findOrFail($idPesquisa);
+    
+        // Busca todos os formulários da pesquisa por data de criação
+        $formularios = formulario::where('pesquisa_id', $idPesquisa)
+                                    ->orderBy('created_at')
+                                    ->get();
+    
+        $resultado_total = [];
+    
+        // Percorre todos os formulários
+        foreach ($formularios as $formulario) {
+            // Coleta os resultados do formulário
+            $resultados = $formulario->resultados()->pluck('resultados');
+            
+            // Coleta os dados do formulário
+            $dadosFormulario = json_decode($formulario->dados); // Transformando o JSON em array
+    
+            $perguntas_respostas = []; // Array para armazenar perguntas e respostas por formulário
+    
+            // Processa as perguntas e respostas de cada formulário
+            foreach ($dadosFormulario as $index => $pergunta) {
+                $respostas = [];
+                foreach ($resultados as $resultado) {
+                    $resultadoJson = json_decode($resultado);
+                    // Verifica se o índice da resposta está correto
+                    if (isset($resultadoJson[$index])) {
+                        $respostas[] = $resultadoJson[$index];
+                    }
+                }
+    
+                // Verifica o tipo da pergunta e faz o devido processamento
+                if ($pergunta->tipo == 'escolha-unica' || $pergunta->tipo == 'multipla-escolha') {
+                    // Inicializa um contador para cada opção
+                    $contagem = array_fill_keys($pergunta->opcoes, 0);
+    
+                    // Conta as respostas nas opções
+                    foreach ($respostas as $resposta) {
+                        if (is_array($resposta)) { // Para múltiplas escolhas
+                            foreach ($resposta as $opcao) {
+                                if (isset($contagem[$opcao])) {
+                                    $contagem[$opcao]++;
+                                }
+                            }
+                        } else { // Para escolha única
+                            if (isset($contagem[$resposta])) {
+                                $contagem[$resposta]++;
+                            }
+                        }
+                    }
+    
+                    // Armazenando as respostas no array
+                    $perguntas_respostas[] = [
+                        'pergunta' => $pergunta->pergunta,
+                        'tipo' => $pergunta->tipo,
+                        'dados' => $contagem,
+                    ];
+                } elseif ($pergunta->tipo == 'estrela') {
+                    $estrelaContagem = [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0];
+    
+                    // Contando as estrelas
+                    foreach ($respostas as $resposta) {
+                        if (isset($estrelaContagem[$resposta])) {
+                            $estrelaContagem[$resposta]++;
+                        }
+                    }
+    
+                    // Armazenando as respostas no array
+                    $perguntas_respostas[] = [
+                        'pergunta' => $pergunta->pergunta,
+                        'tipo' => $pergunta->tipo,
+                        'dados' => $estrelaContagem,
+                    ];
+                } elseif ($pergunta->tipo == 'texto-curto' || $pergunta->tipo == 'texto-longo') {
+                    // Se tipo texto, apenas armazena as respostas
+                    $perguntas_respostas[] = [
+                        'pergunta' => $pergunta->pergunta,
+                        'tipo' => $pergunta->tipo,
+                        'respostas' => $respostas,
+                    ];
+                }
+            }
+    
+            // Armazenando o resultado do formulário
+            $resultado_total[] = [
+                'formulario_id' => $formulario->idFormulario, // Adiciona o ID do formulário
+                'perguntas' => $perguntas_respostas, // Lista de todas as perguntas e respostas
+            ];
+        }
+    
+        // Gerar o arquivo JSON
+        $jsonPath = storage_path('app/public/resultados_pesquisa/');
+        if (!file_exists($jsonPath)) {
+            mkdir($jsonPath, 0777, true); // Cria o diretório se não existir
+        }
+    
+        $jsonFilename = 'resultado_pesquisa_' . $pesquisa->id . '.json';
+        file_put_contents($jsonPath . $jsonFilename, json_encode($resultado_total, JSON_PRETTY_PRINT));
+    
+        // Forçar o download do arquivo JSON
+        return response()->download($jsonPath . $jsonFilename, 'Resultado_Pesquisa_' . $pesquisa->id . '.json');
     }
+    
+    
 }

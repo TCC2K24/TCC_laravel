@@ -53,6 +53,8 @@ Route::get('/pesquisa/{id}/postar', [PesquisaController::class, 'postar'])->name
 // finalizar
 Route::get('/pesquisa/{id}/finalizar', [PesquisaController::class, 'finalizar'])->name('cpa.finalizar');
 
+Route::post('/gerar-grafico', [ResultadosController::class, 'gerarGrafico'])->name('gerar.grafico');
+Route::get('/resultados-pesquisa/{idPesquisa}', [ResultadosController::class, 'visualizarResultadosPesquisa'])->name('pesquisa.resultados');
 
 
 // Rota de Formulários da Pesquisa - CPA
