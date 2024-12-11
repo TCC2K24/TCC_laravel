@@ -62,4 +62,5 @@ class CertificadoController extends Controller
         return $pdf->stream('certificado.pdf');
     }
 
+
 }

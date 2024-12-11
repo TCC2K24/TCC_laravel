@@ -21,7 +21,6 @@ class PesquisaController extends Controller
         return view('Cpa.minhas-pesquisas', compact('pesquisas'));
     }
 
-    
     public function criarPesquisa()
     {
         $setores = Setor::all();
@@ -80,8 +79,6 @@ class PesquisaController extends Controller
         return view('components.cursos', compact('cursos'));
     }
     
-
-
     public function store(Request $request)
     {
         $validated = $request->validate(Pesquisa::regrasDeValidacao());
@@ -121,8 +118,6 @@ class PesquisaController extends Controller
         // Redirecionar para a lista de pesquisas ou uma página específica com sucesso
         return redirect()->route('cpa.minhas-pesquisas')->with('success', 'Pesquisa removida com sucesso!');
     }
-
-
     
     public function show($id)
     {
