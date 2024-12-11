@@ -21,6 +21,6 @@ class DatabaseSeeder extends Seeder
         DB::unprepared(file_get_contents($path));
         usuario::factory()->create();
         servidor::factory()->create();
-
+        DB::unprepared('INSERT INTO usuario_disciplina  (id, usuario_id,disciplina_id) VALUES (1, 1, 1),(2, 1, 2),(3, 1, 3)');
     }
 }
