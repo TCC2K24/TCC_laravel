@@ -53,7 +53,7 @@
                                             <th scope="col" class="table-secondary">Pesquisa</th>
                                             <th scope="col" class="table-secondary">Disponível de</th>
                                             <th scope="col" class="table-secondary">Disponível até</th>
-                                            <th scope="col" class="table-secondary">Grupo</th>
+                                            <th scope="col" class="table-secondary">Setor</th>
                                             <th scope="col" class="table-secondary">Situação</th>
                                             <th scope="col" class="table-secondary">Resultados</th>
                                         </tr>
@@ -69,7 +69,7 @@
                                                 </td>
                                                 <td>{{ $pesquisa->dataInicio }}</td>
                                                 <td>{{ $pesquisa->dataFim }}</td>
-                                                <td>{{ $pesquisa->setor }}</td>
+                                                <td>{{ $pesquisa->setor->nomeSetor }}</td>
                                                 <td>{{ $pesquisa->status }}</td>
                                                 <td class="text-{{ $pesquisa->status === 'em aberto' ? 'warning' : ($pesquisa->situacao === 'Fechado' ? 'success' : 'danger') }} fw-bold">
                                                     {{ $pesquisa->status === 'em aberto' ? 'Postar' : ($pesquisa->situacao === 'Fechado' ? 'Finalizado' : 'Pesquisa') }}

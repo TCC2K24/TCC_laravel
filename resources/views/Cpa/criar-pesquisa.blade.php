@@ -27,14 +27,12 @@
                             <option value="Qualidade do Curso">Qualidade do Curso</option>
                             <option value="Infraestrutura">Infraestrutura</option>
                             <option value="Satisfação Geral">Satisfação Geral</option>
-                            <option value="Bem-Estar e Saúde Mental">Bem-Estar e Saúde Mental</option>
                             <option value="Atividades de Extensão e Pesquisa">Atividades de Extensão e Pesquisa</option>
                             <option value="Serviços Acadêmicos">Serviços Acadêmicos</option>
                             <option value="Políticas de Inclusão e Diversidade">Políticas de Inclusão e Diversidade</option>
                             <option value="Mobilidade Acadêmica">Mobilidade Acadêmica</option>
                             <option value="Empregabilidade e Carreira">Empregabilidade e Carreira</option>
                             <option value="Comunicação Institucional">Comunicação Institucional</option>
-                            <option value="Sustentabilidade e Responsabilidade Social">Sustentabilidade e Responsabilidade Social</option>
                             <option value="Experiência do Calouro">Experiência do Calouro</option>
                         </select>
                         <div class="invalid-feedback">
@@ -69,7 +67,7 @@
                             <option value="">--- Selecione ---</option>
                             <option value="Período 1">Período 1</option>
                             <option value="Período 2">Período 2</option>
-                            <option value="Período 3">Período 3</option>
+                            <option value="Período 2">Anual</option>
                         </select>
 
                         <div class="invalid-feedback">
