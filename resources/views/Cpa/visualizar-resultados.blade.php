@@ -3,8 +3,8 @@
     <div class="nav flex-column">
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid align-items-center">
-                <a class="navbar-brand mb-0 h1 fs-3 fw-bold text-secondary" href="#">
-                    <i class="bi bi-arrow-left-short"></i> Pesquisa de Qualidade
+                <a class="navbar-brand mb-0 h1 fs-3 fw-bold text-secondary" href="{{ route('cpa.resultados') }}">
+                    <i class="bi bi-arrow-left-short"></i> Pesquisa
                 </a>
 
                 <a href="{{ route('pesquisa.resultados', ['idPesquisa' => $pesquisa->idPesquisa]) }}">

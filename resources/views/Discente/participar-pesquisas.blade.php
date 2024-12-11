@@ -8,6 +8,10 @@
         </div>
     </div>
 
+    <a href="{{ route('discente.visualizar-pesquisas') }}">
+    <button type="button" style="margin-left: 20px;">Voltar</button>
+    </a>
+
     @if ($formularios->isEmpty())
         <div class="d-flex justify-content-center align-items-center mt-3">
             <div class="card col-md-6">

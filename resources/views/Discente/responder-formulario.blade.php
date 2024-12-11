@@ -2,6 +2,10 @@
     @auth('usuario')
     <x-navigation></x-navigation>
 
+    <a href="{{ route('discente.visualizar-pesquisas') }}">
+    <button type="button" style="margin-left: 20px; margin-top: 100px">Voltar</button>
+    </a>
+    
     <div class="d-flex justify-content-center align-items-center mt-3">
         <div class="card w-75">
             <div class="card-header bg-danger p-2" style="--bs-bg-opacity: .5;">
@@ -9,7 +13,6 @@
             </div>
             <div class="card-body">
                 <blockquote class="blockquote mb-0">
-                    <p>Professor: {{ $pesquisa->professor ?? 'Não informado' }}</p>
                     <p>Cursos:</p>
                     <ul>
                         @if($pesquisa->Curso->isNotEmpty())
@@ -21,8 +24,6 @@
                         @endif
                     </ul>
 
-
-                    <p>Horário: {{ $pesquisa->horario ?? 'Não informado' }}</p>
                 </blockquote>
             </div>
         </div>
