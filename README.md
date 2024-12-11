@@ -28,4 +28,9 @@ Configurar o php para que possa se conectar com o postgreSQL, dentro do arquivo 
     O sistema possui dois usuários para teste
     um discente com o login 20221097 e senha 123 e
     um servidor com o login lucas.gohara@ufpr.br e senha 'senha'
+
+<li>Rotas de Login:</li>
+<li>Login Servidor: 127.0.0.1:8000/servidor/login</li>
+<li>Login Usuario: 127.0.0.1:8000/login</li>
+<li>Caso você esteja em uma das rotas e queira ir para a outra basta scrollar pra baixo e clicar no botão no canto inferior esquerdo</li>
     
