@@ -24,3 +24,8 @@ Configurar o php para que possa se conectar com o postgreSQL, dentro do arquivo 
 <li>Executar os seguintes comandos: npm run build e npm run dev</li>
 <li>Executar a aplicação com o comando: php artisan serve </li>
 </ul>
+
+    O sistema possui dois usuários para teste
+    um discente com o login 20221097 e senha 123 e
+    um servidor com o login lucas.gohara@ufpr.br e senha 'senha'
+    
