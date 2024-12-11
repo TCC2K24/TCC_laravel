@@ -16,6 +16,7 @@ return new class extends Migration
             $table->json('resultados');
             $table->foreignId('id_pesquisa')->references('idPesquisa')->on('pesquisas');
             $table->foreignId('id_usuario')->references('idUsuario')->on('usuarios');
+            $table->foreignId('id_formulario')->references('idFormulario')->on('formularios');
             $table->timestamps();
         });
     }
