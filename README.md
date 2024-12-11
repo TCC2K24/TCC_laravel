@@ -19,8 +19,13 @@ Configurar o php para que possa se conectar com o postgreSQL, dentro do arquivo 
 <li>Configurar o .env preencha os campos 'DB_USERNAME' e 'DB_PASSWORD' com as credenciais do postgreSQL</li>
 <li>Gerar uma key com o comando: php artisan key:generate</li>
 <li>Criar um database com o nome GFCPA no postgre: create database  gfcpa</li>
-<li>Executar o comando de migração: php artisan db:migrate</li>
+<li>Executar o comando de migração: php artisan migrate:fresh</li>
 <li>Povoar o banco com o comando : php artisan db:seed</li>
 <li>Executar os seguintes comandos: npm run build e npm run dev</li>
 <li>Executar a aplicação com o comando: php artisan serve </li>
 </ul>
+
+    O sistema possui dois usuários para teste
+    um discente com o login 20221097 e senha 123 e
+    um servidor com o login lucas.gohara@ufpr.br e senha 'senha'
+    
