@@ -22,13 +22,13 @@ class PesquisaController extends Controller
         $pesquisa = Pesquisa::findOrFail($id);
         $formularios = $pesquisa->getFormulariosByDisciplinas($disciplinas);
 
-        $formulariosRespondidos = $pesquisa->Formulario() // Ou qualquer outra consulta Eloquent
-            ->whereIn('disciplina_id', $disciplinas) // Filtra por disciplinas associadas ao usuário
+        $formulariosRespondidos = $pesquisa->Formulario() 
+            ->whereIn('disciplina_id', $disciplinas) 
             ->whereHas('resultados', function ($query) use ($id, $usuario) {
-                $query->where('resultados.id_pesquisa', $id) // Condição para a pesquisa
-                    ->where('resultados.id_usuario', $usuario->idUsuario); // Condição para o id do usuário
+                $query->where('resultados.id_pesquisa', $id) 
+                    ->where('resultados.id_usuario', $usuario->idUsuario); 
             })
-            ->pluck('idFormulario'); // Pega os ids dos formulários respondidos
+            ->pluck('idFormulario'); 
 
         return view('Discente.participar-pesquisas', compact('pesquisa', 'formularios', 'formulariosRespondidos'));
     }
@@ -56,13 +56,13 @@ class PesquisaController extends Controller
     public function enviarResposta(Request $request, $idPesquisa, $idFormulario)
     {
         $request->validate(['respostas' => 'required|array']);
+
         $usuarioId = auth('usuario')->user()->idUsuario;
 
         $pesquisa = Pesquisa::findOrFail($idPesquisa);
         $pesquisa->salvarRespostas($request->input('respostas'), $idFormulario, $usuarioId);
 
-        return redirect()->route('tela-inicial-d')->with('success', 'Respostas enviadas com sucesso!');
+        return redirect()->route('discente.participar-pesquisas', ['id' => $idPesquisa])
+        ->with('success', 'Respostas enviadas com sucesso!');
     }
-
-
 }

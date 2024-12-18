@@ -65,6 +65,13 @@ class FormularioLivewire extends Component
     {
         $this->validate([
             'nomeFormulario' => 'required|string|max:255',
+            'disciplinaId' => 'required|exists:disciplinas,idDisciplina',
+            'tempoDeParticipacao' => 'required|integer|min:15',
+            'perguntas' => 'required|array|min:1',
+            'perguntas.*.pergunta' => 'required|string|max:255',
+            'perguntas.*.tipo' => 'required|in:texto-curto,texto-longo,escolha-unica,multipla-escolha,estrela',
+            'perguntas.*.opcoes' => 'required_if:perguntas.*.tipo,escolha-unica,multipla-escolha|array',
+            'perguntas.*.opcoes.*' => 'required_if:perguntas.*.tipo,escolha-unica,multipla-escolha|string|max:255',
         ]);
 
         if ($this->edita) {

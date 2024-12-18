@@ -9,21 +9,11 @@
     <div class="d-flex justify-content-center align-items-center mt-3">
         <div class="card w-75">
             <div class="card-header bg-danger p-2" style="--bs-bg-opacity: .5;">
-                <h5>{{ $pesquisa->descricao }}</h5>
+                <h5>{{ $formulario->nome_formulario }}</h5>
             </div>
             <div class="card-body">
                 <blockquote class="blockquote mb-0">
-                    <p>Cursos:</p>
-                    <ul>
-                        @if($pesquisa->Curso->isNotEmpty())
-                            @foreach($pesquisa->Curso as $curso)
-                                <li>{{ $curso->nomeCurso }}</li> 
-                            @endforeach
-                        @else
-                            <li>Não informado</li>
-                        @endif
-                    </ul>
-
+                    <p>Disciplina: {{$formulario->disciplina->nomeDisciplina}}</p>
                 </blockquote>
             </div>
         </div>
@@ -53,7 +43,7 @@
                         @elseif ($pergunta['tipo'] === 'multipla-escolha')
                             @foreach ($pergunta['opcoes'] as $opcao)
                                 <div class="form-check">
-                                    <input type="checkbox" name="respostas[{{ $index }}][]" value="{{ $opcao }}" class="form-check-input" required>
+                                    <input type="checkbox" name="respostas[{{ $index }}][]" value="{{ $opcao }}" class="form-check-input">
                                     <label class="form-check-label">{{ $opcao }}</label>
                                 </div>
                             @endforeach
@@ -64,7 +54,7 @@
                                         <div class="text-center mx-2">
                                             <label class="form-check">
                                                 <input type="radio" name="respostas[{{ $index }}]" value="{{ $i }}" class="form-check-input" required>
-                                                <div>{{ $i }}</div> <!-- Número abaixo do botão de rádio -->
+                                                <div>{{ $i }}</div>
                                             </label>
                                         </div>
                                     @endfor

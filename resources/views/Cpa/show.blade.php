@@ -94,7 +94,7 @@
                 </button>
             </form>
             @endif
-            @if ($pesquisa->dataFim < now() && $pesquisa->status)
+            @if ($pesquisa->dataFim < now() && $pesquisa->status == 'postada')
             <a href="{{ route('cpa.finalizar', ['id' => $pesquisa->idPesquisa]) }}" class="btn btn-danger border border-dark">
                 <i class="bi bi-check-circle"></i> Finalizar Pesquisa
             </a>

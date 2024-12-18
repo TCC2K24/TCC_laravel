@@ -18,11 +18,12 @@ class CertificadoController extends Controller
     {
         $usuarioId = auth('usuario')->user()->idUsuario;
         
-        $query = Pesquisa::whereHas('Formulario', function ($query) use ($usuarioId) {
+        $query = Pesquisa::where('status', 'finalizada') 
+            ->whereHas('Formulario', function ($query) use ($usuarioId) {
             $query->whereHas('resultados', function ($query) use ($usuarioId) {
-                $query->where('id_usuario', $usuarioId);
-            });
+            $query->where('id_usuario', $usuarioId);
         });
+    });
         
         if ($request->filled('titulo')) {
             $query->where('descricao', 'like', '%' . $request->titulo . '%');

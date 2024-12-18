@@ -112,7 +112,7 @@ class Pesquisa extends Model
                 $query->whereDate('dataInicio', '<=', now())
                     ->whereDate('dataFim', '>=', now());
             } elseif ($filtros['exibir'] === 'passadas') {
-                $query->whereDate('dataFim', '<', now());
+                $query->whereDate('dataFim', '>', now());
             }
         }
 

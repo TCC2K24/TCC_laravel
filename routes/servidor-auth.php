@@ -53,9 +53,7 @@ Route::get('/pesquisa/{id}/postar', [PesquisaController::class, 'postar'])->name
 // finalizar
 Route::get('/pesquisa/{id}/finalizar', [PesquisaController::class, 'finalizar'])->name('cpa.finalizar');
 
-Route::post('/gerar-grafico', [ResultadosController::class, 'gerarGrafico'])->name('gerar.grafico');
 Route::get('/resultados-pesquisa/{idPesquisa}', [ResultadosController::class, 'visualizarResultadosPesquisa'])->name('pesquisa.resultados');
-
 
 // Rota de Formulários da Pesquisa - CPA
 Route::get('/pesquisa/{id}/formulario', [FormulariosController::class, 'formulariosDaPesquisa'])->name('cpa.formularios-da-pesquisa');
@@ -75,10 +73,6 @@ Route::delete('/pesquisa/{idPesquisa}/formulario/{idFormulario}', [FormulariosCo
 // falta criar a rota de put, atualmente ta numa função porém tem q passar para uma rota pra ficar bonitinho
 Route::put('/pesquisa/{idPesquisa}/formulario/editar',[FormulariosController::class,'editarFormulario']);
 // falta editas
-
-
-
-
 
 // Rota da Tela de Resultados - CPA
 Route::get('/resultados', [ResultadosController:: class, 'resultados'])->name('cpa.resultados');

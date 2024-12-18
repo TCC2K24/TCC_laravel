@@ -8,7 +8,7 @@
                 </a>
 
                 <a href="{{ route('pesquisa.resultados', ['idPesquisa' => $pesquisa->idPesquisa]) }}">
-                    <p class="text-danger h6 fw-bold">Clique <mark class="bg-white fw-bold text-primary">AQUI</mark> para ver o Resultado da Pesquisa</p>
+                    <p class="text-danger h6 fw-bold">Clique <mark class="bg-white fw-bold text-primary">AQUI</mark> para baixar o Resultado da Pesquisa</p>
                 </a>
 
                 <i class="bi bi-person-fill" style="font-size: 30px;"></i>
